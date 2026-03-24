@@ -12,19 +12,26 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* ══════════════════════════════════════════════════════
+       LIGHT theme (default)
+    ══════════════════════════════════════════════════════ */
     :root {
-      /* ── Softer, recruiter-readable dark palette ── */
-      --bg:      #10121a;       /* deep blue-slate — less harsh than pure black */
-      --bg2:     #181b26;       /* card background */
-      --bg3:     #1e2130;       /* inner surfaces */
-      --border:  #2a2e40;       /* visible but calm */
-      --text:    #dfe0e8;       /* warm near-white, not glaring */
-      --sub:     #b0b3c6;       /* secondary text — much more readable than before */
-      --muted:   #7a7e96;       /* placeholders, meta */
-      --accent:  #c9a84c;       /* amber gold — warmer, less screaming */
-      --accent2: #4ecdb4;       /* teal — softened */
-      --accent3: #7b8cde;       /* indigo for variety */
-      --danger:  #d9605a;
+      --bg:        #f4f3ef;       /* warm off-white, paper-like */
+      --bg2:       #ffffff;       /* card surfaces */
+      --bg3:       #ece9e3;       /* inner / tag backgrounds */
+      --border:    #d6d2c8;       /* calm separator */
+      --text:      #1c1d26;       /* near-black, high contrast */
+      --sub:       #3e4057;       /* secondary text */
+      --muted:     #7e8099;       /* meta, placeholders */
+      --accent:    #9a7018;       /* amber darkened for light bg */
+      --accent2:   #0d8c79;       /* teal darkened */
+      --accent3:   #3d4fa8;       /* indigo */
+      --danger:    #c04040;
+
+      --nav-bg:    rgba(244,243,239,.92);
+      --drawer-bg: rgba(244,243,239,.98);
+      --btn-primary-text: #ffffff;
+      --shadow-card: 0 2px 12px rgba(28,29,38,.07);
 
       --ff-head: 'Syne', sans-serif;
       --ff-body: 'Lora', serif;
@@ -34,20 +41,43 @@
       --radius: 8px;
     }
 
+    /* ══════════════════════════════════════════════════════
+       DARK theme override
+    ══════════════════════════════════════════════════════ */
+    [data-theme="dark"] {
+      --bg:        #10121a;
+      --bg2:       #181b26;
+      --bg3:       #1e2130;
+      --border:    #2a2e40;
+      --text:      #dfe0e8;
+      --sub:       #b0b3c6;
+      --muted:     #7a7e96;
+      --accent:    #c9a84c;
+      --accent2:   #4ecdb4;
+      --accent3:   #7b8cde;
+      --danger:    #d9605a;
+
+      --nav-bg:    rgba(16,18,26,.92);
+      --drawer-bg: rgba(16,18,26,.97);
+      --btn-primary-text: #0d0f17;
+      --shadow-card: 0 2px 12px rgba(0,0,0,.25);
+    }
+
     html { scroll-behavior: smooth; }
     body {
       background: var(--bg); color: var(--text);
       font-family: var(--ff-body); font-size: 1rem; line-height: 1.78;
       -webkit-font-smoothing: antialiased;
+      transition: background .3s, color .3s;
     }
     a { color: inherit; text-decoration: none; }
     ul { list-style: none; }
 
-    /* subtle noise */
+    /* subtle noise — lighter in light mode */
     body::before {
       content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
-      opacity: .45;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      opacity: .5;
     }
 
     .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
@@ -56,7 +86,8 @@
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       border-bottom: 1px solid var(--border);
-      background: rgba(16,18,26,.92); backdrop-filter: blur(16px);
+      background: var(--nav-bg); backdrop-filter: blur(16px);
+      transition: background .3s, border-color .3s;
     }
     nav .inner {
       max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
@@ -81,18 +112,29 @@
     .lang-toggle {
       display: flex; background: var(--bg3); border: 1px solid var(--border);
       border-radius: 20px; overflow: hidden; cursor: pointer; flex-shrink: 0;
+      transition: background .3s, border-color .3s;
     }
     .lang-toggle span {
       font-family: var(--ff-mono); font-size: .7rem; padding: 4px 13px;
       color: var(--muted); transition: all .2s; user-select: none;
     }
-    .lang-toggle span.active { background: var(--accent); color: #0e0f14; font-weight: 700; }
+    .lang-toggle span.active { background: var(--accent); color: var(--btn-primary-text); font-weight: 700; }
+
+    /* Theme switcher button */
+    .theme-btn {
+      background: var(--bg3); border: 1px solid var(--border); border-radius: 50%;
+      width: 32px; height: 32px; cursor: pointer; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .9rem; transition: all .2s; line-height: 1;
+      color: var(--muted);
+    }
+    .theme-btn:hover { border-color: var(--accent); color: var(--accent); transform: rotate(20deg); }
 
     /* Hamburger button — hidden on desktop */
     .nav-burger {
       display: none; flex-direction: column; justify-content: center;
       gap: 5px; background: none; border: none; cursor: pointer;
-      padding: 6px; margin-left: 12px; flex-shrink: 0;
+      padding: 6px; margin-left: 4px; flex-shrink: 0;
     }
     .nav-burger span {
       display: block; width: 22px; height: 2px;
@@ -100,23 +142,22 @@
       transition: transform .28s ease, opacity .2s ease, width .2s ease;
       transform-origin: center;
     }
-    /* Animated X state */
     .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav-burger.open span:nth-child(2) { opacity: 0; width: 0; }
     .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* Mobile drawer */
     .nav-drawer {
-      display: none; /* shown only in mobile media query */
+      display: none;
       flex-direction: column;
       overflow: hidden;
       max-height: 0;
       transition: max-height .35s ease, border-top-color .2s;
       border-top: 1px solid transparent;
-      background: rgba(16,18,26,.97);
+      background: var(--drawer-bg);
     }
     .nav-drawer.open {
-      max-height: 420px;
+      max-height: 460px;
       border-top-color: var(--border);
     }
     .nav-drawer-inner {
@@ -134,6 +175,11 @@
       margin-top: 16px; display: flex; align-items: center; justify-content: space-between;
     }
     .nav-drawer .drawer-bottom .lang-toggle span { font-size: .75rem; padding: 6px 16px; }
+    /* Theme toggle row inside drawer */
+    .drawer-theme-row {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--ff-mono); font-size: .7rem; color: var(--muted);
+    }
 
     /* ═══════════════════════════════════════ HERO */
     #hero { min-height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); position: relative; overflow: hidden; }
@@ -170,8 +216,8 @@
       padding: 11px 22px; border-radius: 5px; cursor: pointer;
       transition: all .2s; display: inline-flex; align-items: center; gap: 8px; letter-spacing: .02em;
     }
-    .btn-primary { background: var(--accent); color: #0d0f17; border: 1.5px solid var(--accent); }
-    .btn-primary:hover { background: #dbb95a; border-color: #dbb95a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,.22); }
+    .btn-primary { background: var(--accent); color: var(--btn-primary-text); border: 1.5px solid var(--accent); }
+    .btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
     .btn-ghost { background: transparent; color: var(--sub); border: 1.5px solid var(--border); }
     .btn-ghost:hover { border-color: var(--sub); color: var(--text); transform: translateY(-2px); }
     .btn-dl { background: var(--bg3); color: var(--accent2); border: 1.5px solid rgba(78,205,180,.3); }
@@ -198,13 +244,13 @@
     .about-text p strong { color: var(--text); }
     .about-text p:last-child { margin-bottom: 0; }
     .about-stats { display: flex; flex-direction: column; gap: 14px; }
-    .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+    .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow-card); }
     .stat-num { font-family: var(--ff-head); font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
     .stat-label { font-family: var(--ff-mono); font-size: .67rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; line-height: 1.5; }
 
     /* ═══════════════════════════════════════ SKILLS */
     .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow-card); }
     .skill-group-title { font-family: var(--ff-mono); font-size: .67rem; color: var(--accent); text-transform: uppercase; letter-spacing: .14em; margin-bottom: 16px; }
     .tags { display: flex; flex-wrap: wrap; gap: 7px; }
     .tag { font-family: var(--ff-mono); font-size: .69rem; background: var(--bg3); border: 1px solid var(--border); color: var(--sub); padding: 5px 10px; border-radius: 4px; transition: border-color .15s; }
@@ -230,8 +276,8 @@
 
     /* ═══════════════════════════════════════ PROJECTS */
     .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .proj-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color .2s, transform .2s, box-shadow .2s; }
-    .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(201,168,76,.1); }
+    .proj-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color .2s, transform .2s, box-shadow .2s; box-shadow: var(--shadow-card); }
+    .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,.12); }
     .proj-icon { font-size: 1.4rem; margin-bottom: 12px; }
     .proj-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
     .proj-sub { font-family: var(--ff-mono); font-size: .66rem; color: var(--accent2); letter-spacing: .08em; margin-bottom: 12px; }
@@ -240,7 +286,7 @@
 
     /* ═══════════════════════════════════════ EDUCATION */
     .edu-list { display: flex; flex-direction: column; gap: 16px; }
-    .edu-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; }
+    .edu-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; box-shadow: var(--shadow-card); }
     .edu-school { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
     .edu-degree { font-size: .9rem; color: var(--sub); margin-bottom: 8px; }
     .edu-note { font-size: .83rem; color: var(--muted); line-height: 1.62; }
@@ -255,7 +301,7 @@
 
     /* ═══════════════════════════════════════ LANG CARDS */
     .lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .lang-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 16px; text-align: center; }
+    .lang-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 16px; text-align: center; box-shadow: var(--shadow-card); }
     .lang-flag { font-size: 1.6rem; margin-bottom: 8px; }
     .lang-name { font-family: var(--ff-head); font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
     .lang-level { font-family: var(--ff-mono); font-size: .66rem; color: var(--accent2); }
@@ -336,6 +382,8 @@
         <span id="enBtn" class="active" onclick="setLang('en')">EN</span>
         <span id="frBtn" onclick="setLang('fr')">FR</span>
       </div>
+      <!-- Theme switcher -->
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode" title="Toggle dark mode">🌙</button>
       <!-- Burger — visible on mobile only -->
       <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -362,6 +410,11 @@
         <div class="lang-toggle">
           <span onclick="setLang('en'); closeDrawer();" id="enBtnD">EN</span>
           <span onclick="setLang('fr'); closeDrawer();" id="frBtnD">FR</span>
+        </div>
+        <div class="drawer-theme-row">
+          <span class="nt-en">Dark mode</span>
+          <span class="nt-fr" style="display:none">Mode sombre</span>
+          <button class="theme-btn" id="themeBtnD" aria-label="Toggle dark mode">🌙</button>
         </div>
       </div>
     </div>
@@ -911,31 +964,43 @@
 </footer>
 
 <script>
+  /* ── Theme ──────────────────────────────────────────── */
+  const ICONS = { light: '🌙', dark: '☀️' };
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : '');
+    const icon = ICONS[theme] ?? '🌙';
+    const btn  = document.getElementById('themeBtn');
+    const btnD = document.getElementById('themeBtnD');
+    if (btn)  { btn.textContent  = icon; btn.setAttribute('aria-label',  theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'); }
+    if (btnD) { btnD.textContent = icon; }
+    localStorage.setItem('theme', theme);
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme');
+    applyTheme(current === 'dark' ? 'light' : 'dark');
+  }
+
   /* ── Language toggle ────────────────────────────────── */
   function setLang(l) {
     document.documentElement.lang = l;
-
-    // Main content i18n (data-lang system)
     document.querySelectorAll('[data-lang]').forEach(el => {
       el.classList.toggle('vis', el.dataset.lang === l);
     });
-
-    // Nav-specific lang classes (avoid dual-class bug)
     ['nl-en','nl-fr','dl-en','dl-fr','nt-en','nt-fr'].forEach(cls => {
-      const lang = cls.slice(-2); // 'en' or 'fr'
+      const lang = cls.slice(-2);
       document.querySelectorAll('.' + cls).forEach(el => {
         el.style.display = (lang === l) ? '' : 'none';
       });
     });
-
-    // Header toggle active state
     document.getElementById('enBtn').classList.toggle('active', l === 'en');
     document.getElementById('frBtn').classList.toggle('active', l === 'fr');
-    // Drawer toggle active state
     const enD = document.getElementById('enBtnD');
     const frD = document.getElementById('frBtnD');
-    if (enD) { enD.classList.toggle('active', l === 'en'); }
-    if (frD) { frD.classList.toggle('active', l === 'fr'); }
+    if (enD) enD.classList.toggle('active', l === 'en');
+    if (frD) frD.classList.toggle('active', l === 'fr');
+    localStorage.setItem('lang', l);
   }
 
   /* ── Burger / drawer ────────────────────────────────── */
@@ -951,9 +1016,8 @@
 
   burger.addEventListener('click', () => {
     const isOpen = drawer.classList.contains('open');
-    if (isOpen) {
-      closeDrawer();
-    } else {
+    if (isOpen) { closeDrawer(); }
+    else {
       burger.classList.add('open');
       burger.setAttribute('aria-expanded', 'true');
       drawer.classList.add('open');
@@ -961,25 +1025,31 @@
     }
   });
 
-  // Close drawer on outside click
+  document.getElementById('themeBtn').addEventListener('click', toggleTheme);
+  document.getElementById('themeBtnD').addEventListener('click', () => { toggleTheme(); });
+
   document.addEventListener('click', e => {
     if (!document.getElementById('mainNav').contains(e.target)) closeDrawer();
   });
-
-  // Close drawer on Escape
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
-  /* ── Init ─────────────────────────────────────────── */
-  setLang('en');
+  /* ── Init ────────────────────────────────────────────── */
+  // Theme: default light, respect saved preference
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  applyTheme(savedTheme);
+
+  // Language: default en
+  const savedLang = localStorage.getItem('lang') || 'en';
+  setLang(savedLang);
 
   /* ── Email obfuscation ──────────────────────────────── */
   (function () {
     const codes = [103,98,105,110,97,104,108,97,46,112,114,111,43,98,105,111,64,103,109,97,105,108,46,99,111,109];
     const addr  = codes.map(c => String.fromCharCode(c)).join('');
     const link  = document.getElementById('mailLink');
-    if (link) { link.href = 'mailto:' + addr; }
+    if (link) link.href = 'mailto:' + addr;
     const footer = document.getElementById('footerContact');
-    if (footer) { footer.innerHTML += ' · ' + addr; }
+    if (footer) footer.innerHTML += ' · ' + addr;
   })();
 </script>
 </body>

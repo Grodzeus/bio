@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ghassane Binahla — AI-Powered Software Engineer</title>
+  <meta name="description" content="Software & Backend Engineer specialising in AI systems, LLM orchestration, agentic AI, and cybersecurity." />
+  <meta name="keywords" content="AI Engineer, Backend Engineer, LLM, Agentic AI, RAG, Python, Django, FastAPI, LLMOps, Generative AI, Prompt Engineering, Software Engineer" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ── Softer, recruiter-readable dark palette ── */
+      --bg:      #10121a;       /* deep blue-slate — less harsh than pure black */
+      --bg2:     #181b26;       /* card background */
+      --bg3:     #1e2130;       /* inner surfaces */
+      --border:  #2a2e40;       /* visible but calm */
+      --text:    #dfe0e8;       /* warm near-white, not glaring */
+      --sub:     #b0b3c6;       /* secondary text — much more readable than before */
+      --muted:   #7a7e96;       /* placeholders, meta */
+      --accent:  #c9a84c;       /* amber gold — warmer, less screaming */
+      --accent2: #4ecdb4;       /* teal — softened */
+      --accent3: #7b8cde;       /* indigo for variety */
+      --danger:  #d9605a;
+
+      --ff-head: 'Syne', sans-serif;
+      --ff-body: 'Lora', serif;
+      --ff-mono: 'IBM Plex Mono', monospace;
+      --nav-h: 64px;
+      --max-w: 920px;
+      --radius: 8px;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: var(--ff-body); font-size: 1rem; line-height: 1.78;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* subtle noise */
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity: .45;
+    }
+
+    .wrap { max-width: var(--max-w); margin: 0 auto; padding: 0 28px; position: relative; z-index: 1; }
+
+    /* ═══════════════════════════════════════ NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(16,18,26,.92); backdrop-filter: blur(16px);
+    }
+    nav .inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 0 28px;
+      width: 100%; height: var(--nav-h);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-brand { display: flex; flex-direction: column; line-height: 1.2; flex-shrink: 0; }
+    .nav-name  { font-family: var(--ff-head); font-weight: 800; font-size: .95rem; letter-spacing: .04em; color: var(--accent); }
+    .nav-title {
+      font-family: var(--ff-mono); font-size: .57rem; color: var(--muted);
+      letter-spacing: .1em; text-transform: uppercase; margin-top: 2px;
+    }
+
+    /* Desktop links row */
+    .nav-links { display: flex; align-items: center; gap: 18px; }
+    .nav-links > a {
+      font-family: var(--ff-mono); font-size: .7rem; color: var(--muted);
+      transition: color .2s; white-space: nowrap;
+    }
+    .nav-links > a:hover { color: var(--text); }
+
+    .lang-toggle {
+      display: flex; background: var(--bg3); border: 1px solid var(--border);
+      border-radius: 20px; overflow: hidden; cursor: pointer; flex-shrink: 0;
+    }
+    .lang-toggle span {
+      font-family: var(--ff-mono); font-size: .7rem; padding: 4px 13px;
+      color: var(--muted); transition: all .2s; user-select: none;
+    }
+    .lang-toggle span.active { background: var(--accent); color: #0e0f14; font-weight: 700; }
+
+    /* Hamburger button — hidden on desktop */
+    .nav-burger {
+      display: none; flex-direction: column; justify-content: center;
+      gap: 5px; background: none; border: none; cursor: pointer;
+      padding: 6px; margin-left: 12px; flex-shrink: 0;
+    }
+    .nav-burger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--sub); border-radius: 2px;
+      transition: transform .28s ease, opacity .2s ease, width .2s ease;
+      transform-origin: center;
+    }
+    /* Animated X state */
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; width: 0; }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile drawer */
+    .nav-drawer {
+      display: none; /* shown only in mobile media query */
+      flex-direction: column;
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height .35s ease, border-top-color .2s;
+      border-top: 1px solid transparent;
+      background: rgba(16,18,26,.97);
+    }
+    .nav-drawer.open {
+      max-height: 420px;
+      border-top-color: var(--border);
+    }
+    .nav-drawer-inner {
+      max-width: var(--max-w); margin: 0 auto; padding: 20px 28px 24px;
+      display: flex; flex-direction: column; gap: 0;
+    }
+    .nav-drawer a {
+      font-family: var(--ff-mono); font-size: .78rem; color: var(--sub);
+      padding: 11px 0; border-bottom: 1px solid var(--border);
+      display: block; transition: color .15s;
+    }
+    .nav-drawer a:last-of-type { border-bottom: none; }
+    .nav-drawer a:hover { color: var(--accent); }
+    .nav-drawer .drawer-bottom {
+      margin-top: 16px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-drawer .drawer-bottom .lang-toggle span { font-size: .75rem; padding: 6px 16px; }
+
+    /* ═══════════════════════════════════════ HERO */
+    #hero { min-height: 100svh; display: flex; align-items: center; padding-top: var(--nav-h); position: relative; overflow: hidden; }
+    .grid-line { position: absolute; background: var(--border); opacity: .35; pointer-events: none; }
+    .grid-v { width: 1px; top: 0; bottom: 0; left: 50%; }
+    .grid-h { height: 1px; left: 0; right: 0; top: 42%; }
+
+    .hero-inner { padding: 80px 0 64px; }
+
+    .hero-tag {
+      font-family: var(--ff-mono); font-size: .7rem; color: var(--accent2);
+      letter-spacing: .14em; text-transform: uppercase;
+      display: flex; align-items: center; gap: 10px; margin-bottom: 26px;
+    }
+    .hero-tag::before { content: ''; width: 26px; height: 1px; background: var(--accent2); }
+
+    h1.name {
+      font-family: var(--ff-head); font-weight: 800;
+      font-size: clamp(2.6rem, 8vw, 5.4rem);
+      line-height: 1.03; letter-spacing: -.022em; margin-bottom: 10px;
+    }
+    h1.name em { color: var(--accent); font-style: normal; }
+
+    .hero-sub {
+      font-family: var(--ff-mono); font-size: .8rem; color: var(--sub);
+      margin-bottom: 28px; letter-spacing: .02em; line-height: 1.6;
+    }
+    .hero-desc { font-size: 1.05rem; color: var(--text); max-width: 570px; line-height: 1.82; margin-bottom: 40px; }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 11px; }
+
+    .btn {
+      font-family: var(--ff-head); font-size: .83rem; font-weight: 700;
+      padding: 11px 22px; border-radius: 5px; cursor: pointer;
+      transition: all .2s; display: inline-flex; align-items: center; gap: 8px; letter-spacing: .02em;
+    }
+    .btn-primary { background: var(--accent); color: #0d0f17; border: 1.5px solid var(--accent); }
+    .btn-primary:hover { background: #dbb95a; border-color: #dbb95a; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(201,168,76,.22); }
+    .btn-ghost { background: transparent; color: var(--sub); border: 1.5px solid var(--border); }
+    .btn-ghost:hover { border-color: var(--sub); color: var(--text); transform: translateY(-2px); }
+    .btn-dl { background: var(--bg3); color: var(--accent2); border: 1.5px solid rgba(78,205,180,.3); }
+    .btn-dl:hover { background: rgba(78,205,180,.1); border-color: var(--accent2); transform: translateY(-2px); }
+
+    .hero-badges { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 9px; }
+    .badge { font-family: var(--ff-mono); font-size: .67rem; color: var(--muted); border: 1px solid var(--border); border-radius: 3px; padding: 4px 10px; }
+    .badge.hi { color: var(--accent2); border-color: rgba(78,205,180,.28); background: rgba(78,205,180,.05); }
+    .badge.go { color: var(--accent); border-color: rgba(201,168,76,.28); background: rgba(201,168,76,.05); }
+
+    /* ═══════════════════════════════════════ SECTIONS */
+    section { padding: 96px 0; border-top: 1px solid var(--border); }
+
+    .sec-label {
+      font-family: var(--ff-mono); font-size: .67rem; color: var(--accent);
+      text-transform: uppercase; letter-spacing: .18em;
+      display: flex; align-items: center; gap: 12px; margin-bottom: 48px;
+    }
+    .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    /* ═══════════════════════════════════════ ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+    .about-text p { margin-bottom: 18px; color: var(--sub); font-size: .97rem; }
+    .about-text p strong { color: var(--text); }
+    .about-text p:last-child { margin-bottom: 0; }
+    .about-stats { display: flex; flex-direction: column; gap: 14px; }
+    .stat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+    .stat-num { font-family: var(--ff-head); font-size: 1.9rem; font-weight: 800; color: var(--accent); line-height: 1; }
+    .stat-label { font-family: var(--ff-mono); font-size: .67rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-top: 6px; line-height: 1.5; }
+
+    /* ═══════════════════════════════════════ SKILLS */
+    .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .skill-group { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; }
+    .skill-group-title { font-family: var(--ff-mono); font-size: .67rem; color: var(--accent); text-transform: uppercase; letter-spacing: .14em; margin-bottom: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; }
+    .tag { font-family: var(--ff-mono); font-size: .69rem; background: var(--bg3); border: 1px solid var(--border); color: var(--sub); padding: 5px 10px; border-radius: 4px; transition: border-color .15s; }
+    .tag:hover { border-color: var(--muted); }
+    .tag.ac { color: var(--accent2); border-color: rgba(78,205,180,.28); background: rgba(78,205,180,.06); }
+    .tag.go { color: var(--accent);  border-color: rgba(201,168,76,.28);  background: rgba(201,168,76,.06);  }
+    .tag.vi { color: var(--accent3); border-color: rgba(123,140,222,.28); background: rgba(123,140,222,.06); }
+
+    /* ═══════════════════════════════════════ EXPERIENCE */
+    .exp-list { display: flex; flex-direction: column; }
+    .exp-item { display: grid; grid-template-columns: 195px 1fr; gap: 0 32px; padding: 36px 0; border-bottom: 1px solid var(--border); }
+    .exp-item:last-child { border-bottom: none; }
+    .exp-period { font-family: var(--ff-mono); font-size: .67rem; color: var(--muted); letter-spacing: .05em; margin-bottom: 6px; }
+    .exp-co { font-family: var(--ff-head); font-size: .9rem; font-weight: 700; color: var(--accent); margin-bottom: 2px; }
+    .exp-loc { font-family: var(--ff-mono); font-size: .63rem; color: var(--muted); }
+    .exp-role { font-family: var(--ff-head); font-size: 1.04rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .exp-type { font-family: var(--ff-mono); font-size: .66rem; color: var(--accent2); letter-spacing: .08em; margin-bottom: 12px; }
+    .exp-desc { font-size: .88rem; color: var(--muted); margin-bottom: 14px; line-height: 1.65; }
+    .exp-bullets li { font-size: .87rem; color: var(--sub); padding-left: 18px; position: relative; margin-bottom: 6px; line-height: 1.58; }
+    .exp-bullets li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-family: var(--ff-mono); }
+    .exp-stack { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 6px; }
+    .exp-stack .tag { font-size: .63rem; padding: 3px 8px; }
+
+    /* ═══════════════════════════════════════ PROJECTS */
+    .proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .proj-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; transition: border-color .2s, transform .2s, box-shadow .2s; }
+    .proj-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(201,168,76,.1); }
+    .proj-icon { font-size: 1.4rem; margin-bottom: 12px; }
+    .proj-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .proj-sub { font-family: var(--ff-mono); font-size: .66rem; color: var(--accent2); letter-spacing: .08em; margin-bottom: 12px; }
+    .proj-desc { font-size: .87rem; color: var(--sub); line-height: 1.65; }
+    .proj-metric { margin-top: 16px; font-family: var(--ff-mono); font-size: .69rem; color: var(--accent); background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.22); border-radius: 4px; padding: 6px 10px; display: inline-block; }
+
+    /* ═══════════════════════════════════════ EDUCATION */
+    .edu-list { display: flex; flex-direction: column; gap: 16px; }
+    .edu-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: start; }
+    .edu-school { font-family: var(--ff-head); font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+    .edu-degree { font-size: .9rem; color: var(--sub); margin-bottom: 8px; }
+    .edu-note { font-size: .83rem; color: var(--muted); line-height: 1.62; }
+    .edu-year { font-family: var(--ff-mono); font-size: .66rem; color: var(--muted); margin-top: 8px; }
+    .edu-badge { font-family: var(--ff-mono); font-size: .62rem; white-space: nowrap; background: rgba(78,205,180,.1); color: var(--accent2); border: 1px solid rgba(78,205,180,.28); border-radius: 4px; padding: 5px 11px; }
+    .edu-badge-note { font-family: var(--ff-mono); font-size: .59rem; color: var(--muted); max-width: 160px; line-height: 1.55; margin-top: 8px; }
+
+    /* ═══════════════════════════════════════ CERTS */
+    .cert-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .cert-item { font-family: var(--ff-mono); font-size: .71rem; background: var(--bg2); border: 1px solid var(--border); border-radius: 5px; padding: 8px 14px; display: flex; align-items: center; gap: 8px; color: var(--sub); }
+    .cert-item::before { content: '✦'; color: var(--accent); font-size: .58rem; }
+
+    /* ═══════════════════════════════════════ LANG CARDS */
+    .lang-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .lang-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px 16px; text-align: center; }
+    .lang-flag { font-size: 1.6rem; margin-bottom: 8px; }
+    .lang-name { font-family: var(--ff-head); font-size: .9rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .lang-level { font-family: var(--ff-mono); font-size: .66rem; color: var(--accent2); }
+
+    /* ═══════════════════════════════════════ CONTACT */
+    #contact { padding: 96px 0 64px; text-align: center; border-top: 1px solid var(--border); }
+    .cta-title { font-family: var(--ff-head); font-weight: 800; font-size: clamp(1.8rem, 5vw, 2.8rem); color: var(--text); margin-bottom: 14px; }
+    .cta-sub { color: var(--sub); font-size: .95rem; max-width: 460px; margin: 0 auto 36px; line-height: 1.7; }
+    .cta-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 11px; }
+
+    /* ═══════════════════════════════════════ FOOTER */
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; font-family: var(--ff-mono); font-size: .66rem; color: var(--muted); }
+
+    /* ═══════════════════════════════════════ ANIMATIONS */
+    @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+    .hero-inner > * { animation: fadeUp .55s ease both; }
+    .hero-inner > *:nth-child(1) { animation-delay: .04s; }
+    .hero-inner > *:nth-child(2) { animation-delay: .10s; }
+    .hero-inner > *:nth-child(3) { animation-delay: .16s; }
+    .hero-inner > *:nth-child(4) { animation-delay: .22s; }
+    .hero-inner > *:nth-child(5) { animation-delay: .28s; }
+    .hero-inner > *:nth-child(6) { animation-delay: .35s; }
+
+    /* ═══════════════════════════════════════ RESPONSIVE */
+    @media (max-width: 700px) {
+      .about-grid, .skills-grid, .proj-grid, .lang-grid { grid-template-columns: 1fr; }
+      .exp-item { grid-template-columns: 1fr; }
+      .edu-card { grid-template-columns: 1fr; }
+    }
+
+    /* Mobile nav */
+    @media (max-width: 720px) {
+      .nav-burger { display: flex; }
+      .nav-links > a { display: none; }
+      .nav-links { gap: 10px; }
+      .nav-drawer { display: flex; }
+    }
+
+    /* Tablet — tighten desktop links */
+    @media (min-width: 721px) and (max-width: 900px) {
+      .nav-links > a { font-size: .63rem; }
+      .nav-links { gap: 12px; }
+    }
+
+    /* ═══════════════════════════════════════ i18n */
+    [data-lang]        { display: none; }
+    [data-lang].vis    { display: block; }
+    span[data-lang].vis { display: inline; }
+    li[data-lang].vis   { display: list-item; }
+    div[data-lang].vis  { display: block; }
+    a[data-lang].vis    { display: inline-flex; }
+  </style>
+</head>
+<body>
+
+<!-- NAV ──────────────────────────────────────────────── -->
+<nav id="mainNav">
+  <div class="inner">
+    <div class="nav-brand">
+      <span class="nav-name">G. Binahla</span>
+      <!-- nav-title: class + data-lang merged correctly -->
+      <span class="nav-title nt-en">AI-Powered Software Engineer</span>
+      <span class="nav-title nt-fr" style="display:none">Ingénieur Logiciel · IA</span>
+    </div>
+    <div class="nav-links">
+      <!-- Desktop links, hidden on mobile via CSS -->
+      <a href="#about"    class="nl-en">About</a>
+      <a href="#about"    class="nl-fr" style="display:none">À propos</a>
+      <a href="#skills"   class="nl-en">Skills</a>
+      <a href="#skills"   class="nl-fr" style="display:none">Compétences</a>
+      <a href="#exp"      class="nl-en">Experience</a>
+      <a href="#exp"      class="nl-fr" style="display:none">Expérience</a>
+      <a href="#edu"      class="nl-en">Education</a>
+      <a href="#edu"      class="nl-fr" style="display:none">Formation</a>
+      <a href="#contact"  class="nl-en">Contact</a>
+      <a href="#contact"  class="nl-fr" style="display:none">Contact</a>
+      <div class="lang-toggle">
+        <span id="enBtn" class="active" onclick="setLang('en')">EN</span>
+        <span id="frBtn" onclick="setLang('fr')">FR</span>
+      </div>
+      <!-- Burger — visible on mobile only -->
+      <button class="nav-burger" id="navBurger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile drawer -->
+  <div class="nav-drawer" id="navDrawer" aria-hidden="true">
+    <div class="nav-drawer-inner">
+      <a href="#about"    class="dl-en"  onclick="closeDrawer()">About</a>
+      <a href="#about"    class="dl-fr"  onclick="closeDrawer()" style="display:none">À propos</a>
+      <a href="#skills"   class="dl-en"  onclick="closeDrawer()">Skills</a>
+      <a href="#skills"   class="dl-fr"  onclick="closeDrawer()" style="display:none">Compétences</a>
+      <a href="#exp"      class="dl-en"  onclick="closeDrawer()">Experience</a>
+      <a href="#exp"      class="dl-fr"  onclick="closeDrawer()" style="display:none">Expérience</a>
+      <a href="#edu"      class="dl-en"  onclick="closeDrawer()">Education</a>
+      <a href="#edu"      class="dl-fr"  onclick="closeDrawer()" style="display:none">Formation</a>
+      <a href="#projects" class="dl-en"  onclick="closeDrawer()">Projects</a>
+      <a href="#projects" class="dl-fr"  onclick="closeDrawer()" style="display:none">Projets</a>
+      <a href="#contact"  class="dl-en"  onclick="closeDrawer()">Contact</a>
+      <a href="#contact"  class="dl-fr"  onclick="closeDrawer()" style="display:none">Contact</a>
+      <div class="drawer-bottom">
+        <div class="lang-toggle">
+          <span onclick="setLang('en'); closeDrawer();" id="enBtnD">EN</span>
+          <span onclick="setLang('fr'); closeDrawer();" id="frBtnD">FR</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO ─────────────────────────────────────────────── -->
+<section id="hero">
+  <div class="grid-line grid-v"></div>
+  <div class="grid-line grid-h"></div>
+  <div class="wrap hero-inner">
+
+    <div class="hero-tag">
+      <span data-lang="en" class="vis">Available · Paris, France · EU / UK / CA / US / Remote</span>
+      <span data-lang="fr">Disponible · Paris, France · UE / UK / CA / US / Remote</span>
+    </div>
+
+    <h1 class="name">Ghassane<br /><em>Binahla</em></h1>
+
+    <p class="hero-sub">
+      <span data-lang="en" class="vis">AI-Powered Software &amp; Backend Engineer · Agentic AI · LLMOps · Cybersecurity</span>
+      <span data-lang="fr">Ingénieur Logiciel &amp; Backend · IA Agentique · LLMOps · Cybersécurité</span>
+    </p>
+
+    <p class="hero-desc">
+      <span data-lang="en" class="vis">Founding Engineer on AI product MVPs — from R&amp;D to production. I design deterministic, model-agnostic systems that ship. Passionate about well-crafted software, agentic AI, and the engineering rigour that makes both reliable.</span>
+      <span data-lang="fr">Founding Engineer sur des MVPs IA — de la R&amp;D à la production. Je conçois des systèmes déterministes et model-agnostic qui passent en prod. Passionné par le logiciel bien conçu, l'IA agentique et la rigueur qui les rend fiables.</span>
+    </p>
+
+    <div class="hero-ctas">
+      <a href="https://calendly.com/ghassane-binahla/schedule-meeting" target="_blank" class="btn btn-primary">
+        <span data-lang="en" class="vis">📅 Schedule a call</span>
+        <span data-lang="fr">📅 Planifier un appel</span>
+      </a>
+      <!-- Resume download — language-aware -->
+      <a href="resume.pdf"    download data-lang="en" class="vis btn btn-dl">⬇ Resume (PDF)</a>
+      <a href="resume-fr.pdf" download data-lang="fr"     class="btn btn-dl">⬇ CV (PDF)</a>
+      <a href="https://linkedin.com/in/ghassane-binahla" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/Grodzeus" target="_blank" class="btn btn-ghost">GitHub</a>
+    </div>
+
+    <div class="hero-badges">
+      <span class="badge hi">Python</span>
+      <span class="badge hi">Agentic AI</span>
+      <span class="badge hi">LLM Orchestration</span>
+      <span class="badge hi">RAG · Function Calling</span>
+      <span class="badge hi">LLMOps</span>
+      <span class="badge go">Generative AI</span>
+      <span class="badge go">Prompt Engineering</span>
+      <span class="badge">Docker · GCP</span>
+      <span class="badge">Cybersecurity</span>
+      <span class="badge">Top 5% TryHackMe</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT ────────────────────────────────────────────── -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-label">
+      <span data-lang="en" class="vis">01 — About</span>
+      <span data-lang="fr">01 — À propos</span>
+    </div>
+    <div class="about-grid">
+
+      <div class="about-text">
+        <p data-lang="en" class="vis">
+          I started coding at <strong>15</strong> — not for school, but out of genuine curiosity. By <strong>17</strong>, I was already delivering websites and software for real clients. That early autonomy shaped how I work: product-minded, self-directed, solution-first.
+        </p>
+        <p data-lang="fr">
+          J'ai commencé à coder à <strong>15 ans</strong> — pas pour l'école, par curiosité sincère. À <strong>17 ans</strong>, je livrais déjà des sites web et logiciels à de vrais clients. Cette autonomie précoce a façonné ma façon de travailler : orienté produit, autonome, centré sur la solution.
+        </p>
+        <p data-lang="en" class="vis">
+          I'm a confirmed <strong>software engineer</strong> first — with strong foundations in backend architecture, system design, DevSecOps, and low-level programming (C, C++, Java). AI came naturally as an extension: I build deterministic, model-agnostic pipelines grounded in solid engineering, not hype.
+        </p>
+        <p data-lang="fr">
+          Je suis avant tout un <strong>ingénieur logiciel confirmé</strong> — avec des bases solides en architecture backend, conception système, DevSecOps et programmation bas niveau (C, C++, Java). L'IA est venue naturellement : je construis des pipelines déterministes et model-agnostic fondés sur de la rigueur, pas sur du buzz.
+        </p>
+        <p data-lang="en" class="vis">
+          My approach to <strong>Generative AI</strong> is engineering-first: tool calling, streaming, guardrails, LLM evaluation, token optimisation, and full observability from day one — not afterthoughts. I care about systems that are both powerful and <em>reliably measurable</em>.
+        </p>
+        <p data-lang="fr">
+          Mon approche de l'<strong>IA générative</strong> est engineering-first : function calling, streaming, guardrails, évaluation de LLMs, optimisation des tokens et observabilité complète dès le départ — pas en option. Je construis des systèmes puissants <em>et mesurables</em>.
+        </p>
+        <p data-lang="en" class="vis">
+          Cybersecurity has always been a passion. Ranked <strong>Top 5% on TryHackMe</strong>, active in the Hack2G2 association, and trained in a SecNumEdu-labelled curriculum — I bring a secure-by-design mindset to every project.
+        </p>
+        <p data-lang="fr">
+          La cybersécurité a toujours été une passion. Classé <strong>Top 5% sur TryHackMe</strong>, actif au sein de l'association Hack2G2, et formé dans un cursus labellisé SecNumEdu — j'apporte une approche secure-by-design à chaque projet.
+        </p>
+        <p data-lang="en" class="vis">
+          I'm fluent in <strong>AI-assisted development</strong>: Cursor and Claude Code are core to my daily workflow — accelerating delivery without sacrificing architectural clarity or code quality.
+        </p>
+        <p data-lang="fr">
+          Je maîtrise le <strong>développement assisté par IA</strong> : Cursor et Claude Code font partie intégrante de mon workflow — pour accélérer sans sacrifier la clarté architecturale ni la qualité du code.
+        </p>
+      </div>
+
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="stat-num">8+</div>
+          <div class="stat-label" data-lang="en" class="vis">Years coding · first client at 17</div>
+          <div class="stat-label" data-lang="fr">Ans de code · premier client à 17 ans</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">3×</div>
+          <div class="stat-label" data-lang="en" class="vis">Founding Engineer — solo MVP → production</div>
+          <div class="stat-label" data-lang="fr">Founding Engineer — MVP solo → production</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">#1</div>
+          <div class="stat-label" data-lang="en" class="vis">AI Serious Game — 78 teams, France</div>
+          <div class="stat-label" data-lang="fr">Serious Game IA — 78 équipes, France</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">Top&nbsp;5%</div>
+          <div class="stat-label">TryHackMe · Top 13% Codewars</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS ───────────────────────────────────────────── -->
+<section id="skills">
+  <div class="wrap">
+    <div class="sec-label">
+      <span data-lang="en" class="vis">02 — Skills</span>
+      <span data-lang="fr">02 — Compétences</span>
+    </div>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <div class="skill-group-title" data-lang="en" class="vis">Languages &amp; Frameworks</div>
+        <div class="skill-group-title" data-lang="fr">Langages &amp; Frameworks</div>
+        <div class="tags">
+          <span class="tag ac">Python</span>
+          <span class="tag ac">Django</span>
+          <span class="tag ac">FastAPI</span>
+          <span class="tag">Java</span>
+          <span class="tag">Spring</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">React</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">C</span>
+          <span class="tag">C++</span>
+          <span class="tag">SQL</span>
+          <span class="tag">REST API</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title" data-lang="en" class="vis">AI / ML &amp; LLMOps</div>
+        <div class="skill-group-title" data-lang="fr">IA / ML &amp; LLMOps</div>
+        <div class="tags">
+          <span class="tag ac">Agentic AI</span>
+          <span class="tag ac">LangChain</span>
+          <span class="tag ac">PydanticAI</span>
+          <span class="tag ac">RAG</span>
+          <span class="tag ac">Prompt Engineering</span>
+          <span class="tag go">Generative AI</span>
+          <span class="tag go">LLMOps</span>
+          <span class="tag go">LLM Evaluation</span>
+          <span class="tag go">Function Calling</span>
+          <span class="tag go">Guardrails</span>
+          <span class="tag go">Token Optimisation</span>
+          <span class="tag">MCP</span>
+          <span class="tag">PyTorch</span>
+          <span class="tag">HuggingFace</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">XGBoost</span>
+          <span class="tag">Fine-tuning · LoRA</span>
+          <span class="tag">ComfyUI</span>
+          <span class="tag">Pinecone</span>
+          <span class="tag">Multimodal AI</span>
+          <span class="tag vi">Cursor</span>
+          <span class="tag vi">Claude Code</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title" data-lang="en" class="vis">Infrastructure &amp; Backend</div>
+        <div class="skill-group-title" data-lang="fr">Infrastructure &amp; Backend</div>
+        <div class="tags">
+          <span class="tag">Docker</span>
+          <span class="tag">GCP</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Event-driven Architecture</span>
+          <span class="tag">Streaming</span>
+          <span class="tag">GitLab CI/CD</span>
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">ElasticSearch</span>
+          <span class="tag">Ansible</span>
+          <span class="tag">S3</span>
+          <span class="tag">Observability</span>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <div class="skill-group-title" data-lang="en" class="vis">Security</div>
+        <div class="skill-group-title" data-lang="fr">Sécurité</div>
+        <div class="tags">
+          <span class="tag">Penetration Testing</span>
+          <span class="tag">SIEM</span>
+          <span class="tag">HIDS / NIDS</span>
+          <span class="tag">DevSecOps</span>
+          <span class="tag">Secure-by-Design</span>
+          <span class="tag">Threat Intelligence</span>
+          <span class="tag">Forensics</span>
+          <span class="tag">Risk Analysis</span>
+          <span class="tag">AI Security</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE ───────────────────────────────────────── -->
+<section id="exp">
+  <div class="wrap">
+    <div class="sec-label">
+      <span data-lang="en" class="vis">03 — Experience</span>
+      <span data-lang="fr">03 — Expérience</span>
+    </div>
+    <div class="exp-list">
+
+      <!-- PyratzLabs -->
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">Jan – Sep 2025</div>
+          <div class="exp-co">PyratzLabs</div>
+          <div class="exp-loc">Paris, Hybrid</div>
+        </div>
+        <div>
+          <div class="exp-role" data-lang="en" class="vis">Backend Developer &amp; AI Staff Engineer</div>
+          <div class="exp-role" data-lang="fr">Développeur Backend &amp; AI Staff Engineer</div>
+          <div class="exp-type" data-lang="en" class="vis">Fixed-term · Startup Studio · Founding Engineer</div>
+          <div class="exp-type" data-lang="fr">CDD · Startup Studio · Founding Engineer</div>
+          <div class="exp-desc" data-lang="en" class="vis">End-to-end design and development of AI products. Direct collaboration with founders on product vision and architecture.</div>
+          <div class="exp-desc" data-lang="fr">Conception et développement end-to-end de produits IA. Collaboration directe avec les fondateurs sur la vision produit et l'architecture.</div>
+          <ul class="exp-bullets">
+            <li data-lang="en" class="vis">Multimodal pipeline deployment with deterministic, model-agnostic orchestration</li>
+            <li data-lang="fr">Déploiement de pipelines multimodaux avec orchestration déterministe et model-agnostic</li>
+            <li data-lang="en" class="vis">Full observability stack: structured logs, AI call tracing, tool usage dashboards — LLMOps from day one</li>
+            <li data-lang="fr">Stack d'observabilité complète : logs structurés, traçage des appels IA, dashboards outils — LLMOps dès le départ</li>
+            <li data-lang="en" class="vis">AI monitoring, feasibility studies, R&amp;D, prompt engineering, guardrails</li>
+            <li data-lang="fr">Monitoring IA, études de faisabilité, R&amp;D, prompt engineering, guardrails</li>
+            <li data-lang="en" class="vis">CI/CD: QA, automated tests, GitLab, Docker, audit, production deployment</li>
+            <li data-lang="fr">CI/CD : QA, tests automatisés, GitLab, Docker, audit, déploiement production</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="tag">Python</span><span class="tag">Django</span><span class="tag">PydanticAI</span>
+            <span class="tag">LLMOps</span><span class="tag">Docker</span><span class="tag">GCP</span><span class="tag">GitLab CI</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Cinema -->
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">Jan – Sep 2025</div>
+          <div class="exp-co">Stealth Startup</div>
+          <div class="exp-loc">Remote</div>
+        </div>
+        <div>
+          <div class="exp-role" data-lang="en" class="vis">Founding Engineer — AI Cinema Studio</div>
+          <div class="exp-role" data-lang="fr">Founding Engineer — Studio Cinéma IA</div>
+          <div class="exp-type" data-lang="en" class="vis">Sole engineer until production · Generative AI · Long-form video (&gt;10 min)</div>
+          <div class="exp-type" data-lang="fr">Seul ingénieur jusqu'à la production · IA Générative · Vidéo longue durée (&gt;10 min)</div>
+          <div class="exp-desc" data-lang="en" class="vis">Granular, one-shot AI cinema studio with model-agnostic architecture. Built solo from scratch to production.</div>
+          <div class="exp-desc" data-lang="fr">Studio cinéma IA granulaire et one-shot avec architecture model-agnostic. Construit seul de A à Z jusqu'à la production.</div>
+          <ul class="exp-bullets">
+            <li data-lang="en" class="vis">Agentic pipeline: script generation, storyboarding, intent extraction, function calling</li>
+            <li data-lang="fr">Pipeline agentique : génération de scripts, storyboarding, extraction d'intentions, function calling</li>
+            <li data-lang="en" class="vis">Entity consistency across characters, locations, styles, voices — multimodal AI at scale</li>
+            <li data-lang="fr">Cohérence d'entités (personnages, lieux, styles, voix) — IA multimodale à l'échelle</li>
+            <li data-lang="en" class="vis">Cost optimisation: token budgeting, multi-threading, fine-tuning, LoRA, caching, batching</li>
+            <li data-lang="fr">Optimisation des coûts : budgétisation des tokens, multi-threading, fine-tuning, LoRA, caching, batching</li>
+            <li data-lang="en" class="vis">Output scoring and LLM evaluation pipeline for quality assurance</li>
+            <li data-lang="fr">Scoring des sorties et pipeline d'évaluation LLM pour l'assurance qualité</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="tag">PyTorch</span><span class="tag">PydanticAI</span><span class="tag">LangChain</span>
+            <span class="tag">Generative AI</span><span class="tag">ComfyUI</span><span class="tag">Redis</span>
+            <span class="tag">Event-driven</span><span class="tag">HuggingFace</span><span class="tag">GCP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Concierge -->
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">Jan – Aug 2025</div>
+          <div class="exp-co">Stealth Startup</div>
+          <div class="exp-loc">Remote</div>
+        </div>
+        <div>
+          <div class="exp-role" data-lang="en" class="vis">Founding Engineer &amp; Tech Lead — AI Concierge Agent</div>
+          <div class="exp-role" data-lang="fr">Founding Engineer &amp; Tech Lead — Agent Concierge IA</div>
+          <div class="exp-type" data-lang="en" class="vis">Sole engineer · Agentic AI · Voice + text · Multi-channel</div>
+          <div class="exp-type" data-lang="fr">Seul ingénieur · IA Agentique · Voix + texte · Multi-canal</div>
+          <div class="exp-desc" data-lang="en" class="vis">Full agentic concierge with multi-channel interfaces (Email, SMS, Phone) and hybrid vector search.</div>
+          <div class="exp-desc" data-lang="fr">Concierge agentique complet avec interfaces multi-canaux (Email, SMS, Téléphone) et recherche vectorielle hybride.</div>
+          <ul class="exp-bullets">
+            <li data-lang="en" class="vis">Memory, decision-making, tool calling, execution — RAG, ASR, TTS, streaming</li>
+            <li data-lang="fr">Mémoire, prise de décision, function calling, exécution — RAG, ASR, TTS, streaming</li>
+            <li data-lang="en" class="vis">Hybrid search (dense + sparse) over vector database for context retrieval</li>
+            <li data-lang="fr">Recherche hybride (dense + sparse) sur base vectorielle pour la récupération de contexte</li>
+            <li data-lang="en" class="vis">Multiple authenticated user &amp; provider interfaces</li>
+            <li data-lang="fr">Interfaces multi-utilisateurs/fournisseurs avec authentification</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="tag">FastAPI</span><span class="tag">Agentic AI</span><span class="tag">Pinecone</span>
+            <span class="tag">VAPI/Twilio</span><span class="tag">Hybrid Search</span><span class="tag">Streaming</span><span class="tag">GCP</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- BNP -->
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">Sep 2022 – Sep 2023</div>
+          <div class="exp-co">BNP Paribas CIB</div>
+          <div class="exp-loc">Paris, Hybrid</div>
+        </div>
+        <div>
+          <div class="exp-role" data-lang="en" class="vis">Automation Developer</div>
+          <div class="exp-role" data-lang="fr">Développeur Automatisation</div>
+          <div class="exp-type" data-lang="en" class="vis">Fixed-term · EMEA Backup Team · DORA compliance</div>
+          <div class="exp-type" data-lang="fr">CDD · Équipe Backup EMEA · Conformité DORA</div>
+          <ul class="exp-bullets">
+            <li data-lang="en" class="vis">Internal monitoring platform for 150+ backup servers — saving 1 person-day/week</li>
+            <li data-lang="fr">Plateforme de monitoring pour 150+ serveurs — économie d'1 jour/personne par semaine</li>
+            <li data-lang="en" class="vis">Security policy checklists in preparation for DORA regulatory audits</li>
+            <li data-lang="fr">Checklists de politique de sécurité pour la préparation aux audits réglementaires DORA</li>
+            <li data-lang="en" class="vis">L3 support and no-code tooling for RUN operators</li>
+            <li data-lang="fr">Support L3 et outils no-code pour les opérateurs RUN</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="tag">Django</span><span class="tag">FastAPI</span><span class="tag">Ansible</span>
+            <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">ElasticSearch</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- UM6P -->
+      <div class="exp-item">
+        <div>
+          <div class="exp-period">Jul – Aug 2022</div>
+          <div class="exp-co">UM6P</div>
+          <div class="exp-loc">Rabat, Morocco</div>
+        </div>
+        <div>
+          <div class="exp-role" data-lang="en" class="vis">Assistant IT Engineer — Network &amp; Security</div>
+          <div class="exp-role" data-lang="fr">Ingénieur IT Assistant — Réseau &amp; Sécurité</div>
+          <div class="exp-type" data-lang="en" class="vis">Internship · Research &amp; Education IS</div>
+          <div class="exp-type" data-lang="fr">Stage · SI Recherche &amp; Enseignement</div>
+          <ul class="exp-bullets">
+            <li data-lang="en" class="vis">Cyber risk analysis in a research &amp; education information system</li>
+            <li data-lang="fr">Analyse des risques cyber dans un SI recherche &amp; enseignement</li>
+            <li data-lang="en" class="vis">Deployment and IS integration of a full SIEM solution</li>
+            <li data-lang="fr">Déploiement et intégration d'une solution SIEM complète dans le SI</li>
+          </ul>
+          <div class="exp-stack">
+            <span class="tag">SIEM</span><span class="tag">HIDS/NIDS</span><span class="tag">ElasticSearch</span>
+            <span class="tag">Firewall</span><span class="tag">Threat Intelligence</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS ─────────────────────────────────────────── -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-label">
+      <span data-lang="en" class="vis">04 — Projects</span>
+      <span data-lang="fr">04 — Projets</span>
+    </div>
+    <div class="proj-grid">
+
+      <div class="proj-card">
+        <div class="proj-icon">🩺</div>
+        <div class="proj-title">PhysioAI</div>
+        <div class="proj-sub" data-lang="en" class="vis">AI Assistant for Physiotherapists — MVP</div>
+        <div class="proj-sub" data-lang="fr">Assistant IA pour Kinésithérapeutes — MVP</div>
+        <p class="proj-desc" data-lang="en" class="vis">Pain location &amp; intensity prediction using XGBoost, with integrated exercise, massage, and motion recommendations. Built with Streamlit on a proprietary 1k-row dataset.</p>
+        <p class="proj-desc" data-lang="fr">Prédiction de localisation et d'intensité de douleur via XGBoost, avec suggestions d'exercices, massages et mouvements. Développé avec Streamlit sur un dataset propriétaire de 1 000 lignes.</p>
+        <div class="proj-metric">94% accuracy ±1 cm · 99% ±5 cm</div>
+      </div>
+
+      <div class="proj-card">
+        <div class="proj-icon">🏥</div>
+        <div class="proj-title" data-lang="en" class="vis">Patient-centric Healthcare CRM</div>
+        <div class="proj-title" data-lang="fr">CRM de Santé Patient-centrique</div>
+        <div class="proj-sub" data-lang="en" class="vis">Care centralisation — Prototype</div>
+        <div class="proj-sub" data-lang="fr">Centralisation des soins — Prototype</div>
+        <p class="proj-desc" data-lang="en" class="vis">Centralised patient records &amp; prescription management built with Django + React + Docker. Integrates official reference datasets: pathologies, treatments, indications.</p>
+        <p class="proj-desc" data-lang="fr">Dossiers patients centralisés &amp; gestion des prescriptions construits avec Django + React + Docker. Intègre les jeux de données de référence officiels : pathologies, traitements, indications.</p>
+        <div class="proj-metric">Django · React · Docker</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION ────────────────────────────────────────── -->
+<section id="edu">
+  <div class="wrap">
+    <div class="sec-label">
+      <span data-lang="en" class="vis">05 — Education</span>
+      <span data-lang="fr">05 — Formation</span>
+    </div>
+    <div class="edu-list">
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-school">Nexa IA School</div>
+          <div class="edu-degree" data-lang="en" class="vis">Master's — Data &amp; AI Project Management</div>
+          <div class="edu-degree" data-lang="fr">Master — Data &amp; AI Project Management</div>
+          <div class="edu-note" data-lang="en" class="vis">NLP, Computer Vision, ML/DL, MLOps, Generative AI, Visualisation. Thesis on Generative AI in companies, applied to cinema. <strong>#1 / 78 teams</strong> in the national AI Serious Game.</div>
+          <div class="edu-note" data-lang="fr">NLP, Vision par ordinateur, ML/DL, MLOps, IA Générative, Visualisation. Mémoire sur l'IA générative en entreprise, appliquée au cinéma. <strong>#1 / 78 équipes</strong> au Serious Game IA national.</div>
+          <div class="edu-year">2024 – 2025</div>
+        </div>
+        <div></div>
+      </div>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-school">ENSIBS</div>
+          <div class="edu-degree" data-lang="en" class="vis">Engineering Degree — Computer Science &amp; Cybersecurity</div>
+          <div class="edu-degree" data-lang="fr">Diplôme d'Ingénieur — Informatique &amp; Cybersécurité</div>
+          <div class="edu-note" data-lang="en" class="vis">SDLC, DevSecOps, Systems Engineering, Secure-by-Design development. Software hardening, risk analysis, code audit, penetration testing. Kubernetes, Cloud, Network &amp; System administration. Active member of the Hack2G2 cybersecurity association.</div>
+          <div class="edu-note" data-lang="fr">SDLC, DevSecOps, Génie Logiciel, développement Secure-by-Design. Durcissement logiciel, analyse de risques, audit de code, tests d'intrusion. Kubernetes, Cloud, administration réseau &amp; système. Membre actif de l'association Hack2G2.</div>
+          <div class="edu-year">2019 – 2023</div>
+        </div>
+        <div>
+          <div class="edu-badge">SecNumEdu · ANSSI</div>
+          <div class="edu-badge-note" data-lang="en" class="vis">Label issued by France's national cybersecurity agency (ANSSI) — certifies rigorous industry-defined cybersecurity standards, with at least 50% practical coursework.</div>
+          <div class="edu-badge-note" data-lang="fr">Label de l'ANSSI — atteste que la formation répond aux critères de l'agence nationale de cybersécurité, avec au moins 50% d'enseignements pratiques.</div>
+        </div>
+      </div>
+
+      <div class="edu-card">
+        <div>
+          <div class="edu-school">ENSIBS</div>
+          <div class="edu-degree" data-lang="en" class="vis">Preparatory Program — Engineering Schools Track</div>
+          <div class="edu-degree" data-lang="fr">Classes Préparatoires Intégrées — Cycle Ingénieur</div>
+          <div class="edu-note" data-lang="en" class="vis">Programming, Algorithms, Databases, Networking, OS, IoT. Engineering sciences, Robotics, CAD. Member of the Hack2G2 association.</div>
+          <div class="edu-note" data-lang="fr">Programmation, Algorithmique, BDD, Réseaux, OS, IoT. Sciences de l'ingénieur, Robotique, CAO. Membre de l'association Hack2G2.</div>
+          <div class="edu-year">2017 – 2019</div>
+        </div>
+        <div></div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:48px;">
+      <div class="sec-label" style="margin-bottom:16px;">
+        <span data-lang="en" class="vis">Certifications</span>
+        <span data-lang="fr">Certifications</span>
+      </div>
+      <div class="cert-grid">
+        <div class="cert-item">TOEIC C1 — 970/990</div>
+        <div class="cert-item" data-lang="en" class="vis">Voltaire Certificate — Business level</div>
+        <div class="cert-item" data-lang="fr">Certificat Voltaire — Niveau professionnel</div>
+        <div class="cert-item">Junior Penetration Tester — TryHackMe</div>
+        <div class="cert-item" data-lang="en" class="vis">Challenges &amp; Stakes of Cybersecurity</div>
+        <div class="cert-item" data-lang="fr">Enjeux et défis de la cybersécurité</div>
+        <div class="cert-item" data-lang="en" class="vis">Management through Care — CNAM</div>
+        <div class="cert-item" data-lang="fr">Management par le Care — CNAM</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES ────────────────────────────────────────── -->
+<section id="languages">
+  <div class="wrap">
+    <div class="sec-label">
+      <span data-lang="en" class="vis">06 — Languages</span>
+      <span data-lang="fr">06 — Langues</span>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="lang-flag">🇬🇧</div>
+        <div class="lang-name">English</div>
+        <div class="lang-level">C1 · Bilingual</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇫🇷</div>
+        <div class="lang-name">Français</div>
+        <div class="lang-level" data-lang="en" class="vis">C1 · Native</div>
+        <div class="lang-level" data-lang="fr">C1 · Langue maternelle</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇲🇦</div>
+        <div class="lang-name">العربية</div>
+        <div class="lang-level" data-lang="en" class="vis">C1 · Native</div>
+        <div class="lang-level" data-lang="fr">C1 · Langue maternelle</div>
+      </div>
+      <div class="lang-card">
+        <div class="lang-flag">🇪🇸</div>
+        <div class="lang-name">Español</div>
+        <div class="lang-level">A2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT ──────────────────────────────────────────── -->
+<section id="contact">
+  <div class="wrap">
+    <p class="cta-title">
+      <span data-lang="en" class="vis">Let's build something.</span>
+      <span data-lang="fr">Construisons quelque chose.</span>
+    </p>
+    <p class="cta-sub">
+      <span data-lang="en" class="vis">Open to freelance missions and permanent roles — EU, UK, CA, US, Remote.</span>
+      <span data-lang="fr">Disponible pour des missions freelance et des postes permanents — UE, UK, CA, US, Remote.</span>
+    </p>
+    <div class="cta-links">
+      <a href="https://calendly.com/ghassane-binahla/schedule-meeting" target="_blank" class="btn btn-primary">
+        <span data-lang="en" class="vis">📅 Schedule a call</span>
+        <span data-lang="fr">📅 Planifier un appel</span>
+      </a>
+      <!-- Email link — address assembled by JS at runtime (obfuscated in source) -->
+      <a id="mailLink" class="btn btn-ghost">✉ Email</a>
+      <a href="https://linkedin.com/in/ghassane-binahla" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/Grodzeus" target="_blank" class="btn btn-ghost">GitHub</a>
+      <a href="https://www.codewars.com/users/Grodzeus" target="_blank" class="btn btn-ghost">Codewars</a>
+      <a href="https://tryhackme.com/p/Grodzeus" target="_blank" class="btn btn-ghost">TryHackMe</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap" id="footerContact">
+    Ghassane Binahla · Paris, France
+  </div>
+</footer>
+
+<script>
+  /* ── Language toggle ────────────────────────────────── */
+  function setLang(l) {
+    document.documentElement.lang = l;
+
+    // Main content i18n (data-lang system)
+    document.querySelectorAll('[data-lang]').forEach(el => {
+      el.classList.toggle('vis', el.dataset.lang === l);
+    });
+
+    // Nav-specific lang classes (avoid dual-class bug)
+    ['nl-en','nl-fr','dl-en','dl-fr','nt-en','nt-fr'].forEach(cls => {
+      const lang = cls.slice(-2); // 'en' or 'fr'
+      document.querySelectorAll('.' + cls).forEach(el => {
+        el.style.display = (lang === l) ? '' : 'none';
+      });
+    });
+
+    // Header toggle active state
+    document.getElementById('enBtn').classList.toggle('active', l === 'en');
+    document.getElementById('frBtn').classList.toggle('active', l === 'fr');
+    // Drawer toggle active state
+    const enD = document.getElementById('enBtnD');
+    const frD = document.getElementById('frBtnD');
+    if (enD) { enD.classList.toggle('active', l === 'en'); }
+    if (frD) { frD.classList.toggle('active', l === 'fr'); }
+  }
+
+  /* ── Burger / drawer ────────────────────────────────── */
+  const burger = document.getElementById('navBurger');
+  const drawer = document.getElementById('navDrawer');
+
+  function closeDrawer() {
+    burger.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+  }
+
+  burger.addEventListener('click', () => {
+    const isOpen = drawer.classList.contains('open');
+    if (isOpen) {
+      closeDrawer();
+    } else {
+      burger.classList.add('open');
+      burger.setAttribute('aria-expanded', 'true');
+      drawer.classList.add('open');
+      drawer.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  // Close drawer on outside click
+  document.addEventListener('click', e => {
+    if (!document.getElementById('mainNav').contains(e.target)) closeDrawer();
+  });
+
+  // Close drawer on Escape
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
+
+  /* ── Init ─────────────────────────────────────────── */
+  setLang('en');
+
+  /* ── Email obfuscation ──────────────────────────────── */
+  (function () {
+    const codes = [103,98,105,110,97,104,108,97,46,112,114,111,43,98,105,111,64,103,109,97,105,108,46,99,111,109];
+    const addr  = codes.map(c => String.fromCharCode(c)).join('');
+    const link  = document.getElementById('mailLink');
+    if (link) { link.href = 'mailto:' + addr; }
+    const footer = document.getElementById('footerContact');
+    if (footer) { footer.innerHTML += ' · ' + addr; }
+  })();
+</script>
+</body>
+</html>

@@ -621,6 +621,17 @@
   </div>
 </section>
 
+<!-- HONEYPOT — invisible to humans, visible to scrapers
+     Any email sent to the trap address reveals an active harvester.
+     aria-hidden + display:none + tabindex=-1 ensure no real user interaction. -->
+<div aria-hidden="true" style="display:none;position:absolute;left:-9999px;" tabindex="-1">
+  <form>
+    <label for="__hp_contact">Contact</label>
+    <input id="__hp_contact" type="email" name="email" autocomplete="off"
+           value="scraper-trap@gbinahla.pro" tabindex="-1" />
+  </form>
+</div>
+
 <footer>
   <div class="wrap" id="footerContact">
     ▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ · Paris, France

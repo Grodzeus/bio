@@ -144,15 +144,11 @@ window.addEventListener('load', function () {
     const heroName = document.getElementById('heroName');
     if (heroName) heroName.innerHTML = fn + '<br /><em>' + ln + '</em>';
 
-    /* ── Email badge ── */
-    const badge = document.getElementById('emailBadge');
-    if (badge) {
-      badge.src = 'https://img.shields.io/badge/email-'
-        + encodeURIComponent(display)
-        + '-blue?style=flat-square&logo=gmail';
-    }
-    const mailLink = document.getElementById('mailLink');
-    if (mailLink) mailLink.href = 'mailto:' + mailto;
+    /* ── Email links ── */
+    ['mailLink', 'mailLink1'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.href = 'mailto:' + mailto;
+    });
 
     /* ── Footer ── */
     const footer = document.getElementById('footerContact');

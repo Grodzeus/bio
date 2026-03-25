@@ -233,7 +233,7 @@ section { padding: 96px 0; border-top: 1px solid var(--border); }
 .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
 /* ═══════════════════════════════════════ ABOUT */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; }
+.about-grid { display: grid; grid-template-columns: 1fr; gap: 44px; }
 .about-text p { margin-bottom: 18px; color: var(--sub); font-size: .97rem; }
 .about-text p strong { color: var(--text); }
 .about-text p:last-child { margin-bottom: 0; }

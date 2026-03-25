@@ -72,8 +72,12 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(
 const savedTheme = localStorage.getItem('theme') || 'light';
 applyTheme(savedTheme);
 
-// Language: default en
-const savedLang = localStorage.getItem('lang') || 'en';
+// Language: respect saved preference; otherwise detect from browser/OS
+const _saved = localStorage.getItem('lang');
+const _browserLang = (navigator.languages && navigator.languages.length)
+  ? navigator.languages[0]
+  : navigator.language || 'en';
+const savedLang = _saved || (_browserLang.toLowerCase().startsWith('fr') ? 'fr' : 'en');
 setLang(savedLang);
 
 /* ── Identity obfuscation ───────────────────────────────

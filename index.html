@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ghassane Binahla — AI-Powered Software Engineer</title>
+  <title>▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ — AI-Powered Software Engineer</title>
   <meta name="description" content="Software & Backend Engineer specialising in AI systems, LLM orchestration, agentic AI, and cybersecurity." />
   <meta name="keywords" content="AI Engineer, Backend Engineer, LLM, Agentic AI, RAG, Python, Django, FastAPI, LLMOps, Generative AI, Prompt Engineering, Software Engineer" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -13,25 +13,25 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     /* ══════════════════════════════════════════════════════
-       LIGHT theme (default)
+       LIGHT theme (default)  —  palette: #000000 · #14213d · #fca311 · #e5e5e5 · #ffffff
     ══════════════════════════════════════════════════════ */
     :root {
-      --bg:        #f4f3ef;       /* warm off-white, paper-like */
-      --bg2:       #ffffff;       /* card surfaces */
-      --bg3:       #ece9e3;       /* inner / tag backgrounds */
-      --border:    #d6d2c8;       /* calm separator */
-      --text:      #1c1d26;       /* near-black, high contrast */
-      --sub:       #3e4057;       /* secondary text */
-      --muted:     #7e8099;       /* meta, placeholders */
-      --accent:    #9a7018;       /* amber darkened for light bg */
-      --accent2:   #0d8c79;       /* teal darkened */
-      --accent3:   #3d4fa8;       /* indigo */
+      --bg:        #ffffff;       /* pure white canvas */
+      --bg2:       #f5f5f5;       /* card surfaces — slightly off #e5e5e5 for depth */
+      --bg3:       #e5e5e5;       /* inner / tag backgrounds */
+      --border:    #cccccc;       /* calm separator derived from #e5e5e5 */
+      --text:      #000000;       /* pure black, maximum contrast */
+      --sub:       #14213d;       /* navy — secondary text */
+      --muted:     #5a6480;       /* mid-navy desaturated — meta, placeholders */
+      --accent:    #fca311;       /* amber — primary accent */
+      --accent2:   #14213d;       /* navy as secondary accent */
+      --accent3:   #1a2d54;       /* deeper navy — tertiary */
       --danger:    #c04040;
 
-      --nav-bg:    rgba(244,243,239,.92);
-      --drawer-bg: rgba(244,243,239,.98);
-      --btn-primary-text: #ffffff;
-      --shadow-card: 0 2px 12px rgba(28,29,38,.07);
+      --nav-bg:    rgba(255,255,255,.92);
+      --drawer-bg: rgba(255,255,255,.98);
+      --btn-primary-text: #000000;
+      --shadow-card: 0 2px 12px rgba(0,0,0,.07);
 
       --ff-head: 'Syne', sans-serif;
       --ff-body: 'Lora', serif;
@@ -42,25 +42,25 @@
     }
 
     /* ══════════════════════════════════════════════════════
-       DARK theme override
+       DARK theme override  —  palette: #000000 · #14213d · #fca311 · #e5e5e5 · #ffffff
     ══════════════════════════════════════════════════════ */
     [data-theme="dark"] {
-      --bg:        #10121a;
-      --bg2:       #181b26;
-      --bg3:       #1e2130;
-      --border:    #2a2e40;
-      --text:      #dfe0e8;
-      --sub:       #b0b3c6;
-      --muted:     #7a7e96;
-      --accent:    #c9a84c;
-      --accent2:   #4ecdb4;
-      --accent3:   #7b8cde;
+      --bg:        #000000;       /* pure black */
+      --bg2:       #14213d;       /* navy — card surfaces */
+      --bg3:       #1a2d54;       /* lighter navy — inner / tag backgrounds */
+      --border:    #243352;       /* navy border */
+      --text:      #e5e5e5;       /* light grey — primary text */
+      --sub:       #c8cdd8;       /* slightly dimmed */
+      --muted:     #8a94a8;       /* muted navy-grey */
+      --accent:    #fca311;       /* amber — unchanged */
+      --accent2:   #e5e5e5;       /* light grey as secondary accent */
+      --accent3:   #c8cdd8;       /* soft grey tertiary */
       --danger:    #d9605a;
 
-      --nav-bg:    rgba(16,18,26,.92);
-      --drawer-bg: rgba(16,18,26,.97);
-      --btn-primary-text: #0d0f17;
-      --shadow-card: 0 2px 12px rgba(0,0,0,.25);
+      --nav-bg:    rgba(0,0,0,.92);
+      --drawer-bg: rgba(0,0,0,.97);
+      --btn-primary-text: #000000;
+      --shadow-card: 0 2px 12px rgba(0,0,0,.45);
     }
 
     html { scroll-behavior: smooth; }
@@ -220,13 +220,13 @@
     .btn-primary:hover { filter: brightness(1.08); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.15); }
     .btn-ghost { background: transparent; color: var(--sub); border: 1.5px solid var(--border); }
     .btn-ghost:hover { border-color: var(--sub); color: var(--text); transform: translateY(-2px); }
-    .btn-dl { background: var(--bg3); color: var(--accent2); border: 1.5px solid rgba(78,205,180,.3); }
-    .btn-dl:hover { background: rgba(78,205,180,.1); border-color: var(--accent2); transform: translateY(-2px); }
+    .btn-dl { background: var(--bg3); color: var(--accent2); border: 1.5px solid rgba(20,33,61,.3); }
+    .btn-dl:hover { background: rgba(20,33,61,.1); border-color: var(--accent2); transform: translateY(-2px); }
 
     .hero-badges { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 9px; }
     .badge { font-family: var(--ff-mono); font-size: .67rem; color: var(--muted); border: 1px solid var(--border); border-radius: 3px; padding: 4px 10px; }
-    .badge.hi { color: var(--accent2); border-color: rgba(78,205,180,.28); background: rgba(78,205,180,.05); }
-    .badge.go { color: var(--accent); border-color: rgba(201,168,76,.28); background: rgba(201,168,76,.05); }
+    .badge.hi { color: var(--accent2); border-color: rgba(20,33,61,.28); background: rgba(20,33,61,.05); }
+    .badge.go { color: var(--accent); border-color: rgba(252,163,17,.28); background: rgba(252,163,17,.05); }
 
     /* ═══════════════════════════════════════ SECTIONS */
     section { padding: 96px 0; border-top: 1px solid var(--border); }
@@ -255,9 +255,9 @@
     .tags { display: flex; flex-wrap: wrap; gap: 7px; }
     .tag { font-family: var(--ff-mono); font-size: .69rem; background: var(--bg3); border: 1px solid var(--border); color: var(--sub); padding: 5px 10px; border-radius: 4px; transition: border-color .15s; }
     .tag:hover { border-color: var(--muted); }
-    .tag.ac { color: var(--accent2); border-color: rgba(78,205,180,.28); background: rgba(78,205,180,.06); }
-    .tag.go { color: var(--accent);  border-color: rgba(201,168,76,.28);  background: rgba(201,168,76,.06);  }
-    .tag.vi { color: var(--accent3); border-color: rgba(123,140,222,.28); background: rgba(123,140,222,.06); }
+    .tag.ac { color: var(--accent2); border-color: rgba(20,33,61,.28); background: rgba(20,33,61,.06); }
+    .tag.go { color: var(--accent);  border-color: rgba(252,163,17,.28);  background: rgba(252,163,17,.06);  }
+    .tag.vi { color: var(--accent3); border-color: rgba(20,33,61,.22); background: rgba(20,33,61,.04); }
 
     /* ═══════════════════════════════════════ EXPERIENCE */
     .exp-list { display: flex; flex-direction: column; }
@@ -282,7 +282,7 @@
     .proj-title { font-family: var(--ff-head); font-size: 1.05rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
     .proj-sub { font-family: var(--ff-mono); font-size: .66rem; color: var(--accent2); letter-spacing: .08em; margin-bottom: 12px; }
     .proj-desc { font-size: .87rem; color: var(--sub); line-height: 1.65; }
-    .proj-metric { margin-top: 16px; font-family: var(--ff-mono); font-size: .69rem; color: var(--accent); background: rgba(201,168,76,.07); border: 1px solid rgba(201,168,76,.22); border-radius: 4px; padding: 6px 10px; display: inline-block; }
+    .proj-metric { margin-top: 16px; font-family: var(--ff-mono); font-size: .69rem; color: var(--accent); background: rgba(252,163,17,.07); border: 1px solid rgba(252,163,17,.22); border-radius: 4px; padding: 6px 10px; display: inline-block; }
 
     /* ═══════════════════════════════════════ EDUCATION */
     .edu-list { display: flex; flex-direction: column; gap: 16px; }
@@ -291,7 +291,7 @@
     .edu-degree { font-size: .9rem; color: var(--sub); margin-bottom: 8px; }
     .edu-note { font-size: .83rem; color: var(--muted); line-height: 1.62; }
     .edu-year { font-family: var(--ff-mono); font-size: .66rem; color: var(--muted); margin-top: 8px; }
-    .edu-badge { font-family: var(--ff-mono); font-size: .62rem; white-space: nowrap; background: rgba(78,205,180,.1); color: var(--accent2); border: 1px solid rgba(78,205,180,.28); border-radius: 4px; padding: 5px 11px; }
+    .edu-badge { font-family: var(--ff-mono); font-size: .62rem; white-space: nowrap; background: rgba(20,33,61,.1); color: var(--accent2); border: 1px solid rgba(20,33,61,.28); border-radius: 4px; padding: 5px 11px; }
     .edu-badge-note { font-family: var(--ff-mono); font-size: .59rem; color: var(--muted); max-width: 160px; line-height: 1.55; margin-top: 8px; }
 
     /* ═══════════════════════════════════════ CERTS */
@@ -361,7 +361,7 @@
 <nav id="mainNav">
   <div class="inner">
     <div class="nav-brand">
-      <span class="nav-name">G. Binahla</span>
+      <span class="nav-name" id="navName">▓▓▓▓▓▓▓▓▓▓</span>
       <!-- nav-title: class + data-lang merged correctly -->
       <span class="nav-title nt-en">AI-Powered Software Engineer</span>
       <span class="nav-title nt-fr" style="display:none">Ingénieur Logiciel · IA</span>
@@ -432,7 +432,7 @@
       <span data-lang="fr">Disponible · Paris, France · UE / UK / CA / US / Remote</span>
     </div>
 
-    <h1 class="name">Ghassane<br /><em>Binahla</em></h1>
+    <h1 class="name" id="heroName">▓▓▓▓▓▓▓▓<br /><em>▓▓▓▓▓▓▓</em></h1>
 
     <p class="hero-sub">
       <span data-lang="en" class="vis">AI-Powered Software &amp; Backend Engineer · Agentic AI · LLMOps · Cybersecurity</span>
@@ -445,14 +445,14 @@
     </p>
 
     <div class="hero-ctas">
-      <a href="https://calendly.com/ghassane-binahla/schedule-meeting" target="_blank" class="btn btn-primary">
+      <a id="calLink1" href="#" target="_blank" class="btn btn-primary">
         <span data-lang="en" class="vis">📅 Schedule a call</span>
         <span data-lang="fr">📅 Planifier un appel</span>
       </a>
       <!-- Resume download — language-aware -->
       <a href="resume.pdf"    download data-lang="en" class="vis btn btn-dl">⬇ Resume (PDF)</a>
       <a href="resume-fr.pdf" download data-lang="fr"     class="btn btn-dl">⬇ CV (PDF)</a>
-      <a href="https://linkedin.com/in/ghassane-binahla" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a id="liLink1" href="#" target="_blank" class="btn btn-ghost">LinkedIn</a>
       <a href="https://github.com/Grodzeus" target="_blank" class="btn btn-ghost">GitHub</a>
     </div>
 
@@ -943,13 +943,19 @@
       <span data-lang="fr">Disponible pour des missions freelance et des postes permanents — UE, UK, CA, US, Remote.</span>
     </p>
     <div class="cta-links">
-      <a href="https://calendly.com/ghassane-binahla/schedule-meeting" target="_blank" class="btn btn-primary">
+      <a id="calLink2" href="#" target="_blank" class="btn btn-primary">
         <span data-lang="en" class="vis">📅 Schedule a call</span>
         <span data-lang="fr">📅 Planifier un appel</span>
       </a>
-      <!-- Email link — address assembled by JS at runtime (obfuscated in source) -->
-      <a id="mailLink" class="btn btn-ghost">✉ Email</a>
-      <a href="https://linkedin.com/in/ghassane-binahla" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <!-- Email badge — src and href injected by JS after page load (obfuscated in source) -->
+      <a id="mailLink" href="#" style="display:inline-flex;align-items:center;">
+        <img id="emailBadge"
+          src="https://img.shields.io/badge/email-loading...-lightgrey?style=flat-square&logo=gmail"
+          alt="Email"
+          style="height:28px;border-radius:6px;"
+        />
+      </a>
+      <a id="liLink2" href="#" target="_blank" class="btn btn-ghost">LinkedIn</a>
       <a href="https://github.com/Grodzeus" target="_blank" class="btn btn-ghost">GitHub</a>
       <a href="https://www.codewars.com/users/Grodzeus" target="_blank" class="btn btn-ghost">Codewars</a>
       <a href="https://tryhackme.com/p/Grodzeus" target="_blank" class="btn btn-ghost">TryHackMe</a>
@@ -959,7 +965,7 @@
 
 <footer>
   <div class="wrap" id="footerContact">
-    Ghassane Binahla · Paris, France
+    ▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ · Paris, France
   </div>
 </footer>
 
@@ -1042,15 +1048,64 @@
   const savedLang = localStorage.getItem('lang') || 'en';
   setLang(savedLang);
 
-  /* ── Email obfuscation ──────────────────────────────── */
-  (function () {
-    const codes = [103,98,105,110,97,104,108,97,46,112,114,111,43,98,105,111,64,103,109,97,105,108,46,99,111,109];
-    const addr  = codes.map(c => String.fromCharCode(c)).join('');
-    const link  = document.getElementById('mailLink');
-    if (link) link.href = 'mailto:' + addr;
-    const footer = document.getElementById('footerContact');
-    if (footer) footer.innerHTML += ' · ' + addr;
-  })();
+  /* ── Identity obfuscation ───────────────────────────────
+     All PII decoded only after page load + delay.
+     Static source contains zero plaintext names or URLs.
+     ───────────────────────────────────────────────────── */
+  window.addEventListener('load', function () {
+    setTimeout(function () {
+
+      /* ── Decode ── */
+      const fn       = atob('R2hhc3NhbmU=');
+      const ln       = atob('QmluYWhsYQ==');
+      const navN     = atob('Ry4gQmluYWhsYQ==');
+      const calendly = atob('aHR0cHM6Ly9jYWxlbmRseS5jb20vZ2hhc3NhbmUtYmluYWhsYS9zY2hlZHVsZS1tZWV0aW5n');
+      const linkedin = atob('aHR0cHM6Ly9saW5rZWRpbi5jb20vaW4vZ2hhc3NhbmUtYmluYWhsYQ==');
+      const display  = atob('Z2JpbmFobGEucHJvQGdtYWlsLmNvbQ==');
+      const mailto   = atob('Z2JpbmFobGEucHJvK2Jpb0BnbWFpbC5jb20=');
+
+      /* ── <title> ── */
+      document.title = fn + ' ' + ln + ' — AI-Powered Software Engineer';
+
+      /* ── Nav brand ── */
+      const navName = document.getElementById('navName');
+      if (navName) navName.textContent = navN;
+
+      /* ── Hero h1 ── */
+      const heroName = document.getElementById('heroName');
+      if (heroName) heroName.innerHTML = fn + '<br /><em>' + ln + '</em>';
+
+      /* ── Calendly links ── */
+      ['calLink1', 'calLink2'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.href = calendly;
+      });
+
+      /* ── LinkedIn links ── */
+      ['liLink1', 'liLink2'].forEach(function (id) {
+        const el = document.getElementById(id);
+        if (el) el.href = linkedin;
+      });
+
+      /* ── Email badge ── */
+      const badge = document.getElementById('emailBadge');
+      if (badge) {
+        badge.src = 'https://img.shields.io/badge/email-'
+          + encodeURIComponent(display)
+          + '-blue?style=flat-square&logo=gmail';
+      }
+      const mailLink = document.getElementById('mailLink');
+      if (mailLink) mailLink.href = 'mailto:' + mailto;
+
+      /* ── Footer ── */
+      const footer = document.getElementById('footerContact');
+      if (footer) {
+        footer.innerHTML = fn + ' ' + ln
+          + ' · Paris, France · <a href="mailto:' + mailto + '">' + display + '</a>';
+      }
+
+    }, 2500); // 2.5 s post-load — crawlers never reach this
+  });
 </script>
 </body>
 </html>

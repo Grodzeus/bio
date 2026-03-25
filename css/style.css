@@ -175,7 +175,13 @@ nav .inner {
 .grid-v { width: 1px; top: 0; bottom: 0; left: 50%; }
 .grid-h { height: 1px; left: 0; right: 0; top: 42%; }
 
-.hero-inner { padding: 80px 0 64px; }
+.hero-inner { padding: 80px 0 64px; display: grid; grid-template-columns: 1fr 260px; grid-template-rows: auto auto; gap: 32px 48px; align-items: start; }
+.hero-name-full { grid-column: 1 / -1; margin-bottom: 0; }
+.hero-content { min-width: 0; }
+.hero-stats { display: flex; flex-direction: column; gap: 12px; align-self: start; }
+.hero-stats .stat-card { padding: 16px 18px; }
+.hero-stats .stat-num { font-size: 1.55rem; }
+.hero-stats .stat-label { font-size: .62rem; }
 
 .hero-tag {
   font-family: var(--ff-mono); font-size: .7rem; color: var(--accent2);
@@ -305,19 +311,23 @@ footer { border-top: 1px solid var(--border); padding: 24px; text-align: center;
 
 /* ═══════════════════════════════════════ ANIMATIONS */
 @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
-.hero-inner > * { animation: fadeUp .55s ease both; }
-.hero-inner > *:nth-child(1) { animation-delay: .04s; }
-.hero-inner > *:nth-child(2) { animation-delay: .10s; }
-.hero-inner > *:nth-child(3) { animation-delay: .16s; }
-.hero-inner > *:nth-child(4) { animation-delay: .22s; }
-.hero-inner > *:nth-child(5) { animation-delay: .28s; }
-.hero-inner > *:nth-child(6) { animation-delay: .35s; }
+.hero-name-full, .hero-content > *, .hero-stats { animation: fadeUp .55s ease both; }
+.hero-name-full { animation-delay: .04s; }
+.hero-content > *:nth-child(1) { animation-delay: .12s; }
+.hero-content > *:nth-child(2) { animation-delay: .18s; }
+.hero-content > *:nth-child(3) { animation-delay: .24s; }
+.hero-content > *:nth-child(4) { animation-delay: .30s; }
+.hero-stats { animation-delay: .22s; }
 
 /* ═══════════════════════════════════════ RESPONSIVE */
 @media (max-width: 700px) {
   .about-grid, .skills-grid, .proj-grid, .lang-grid { grid-template-columns: 1fr; }
   .exp-item { grid-template-columns: 1fr; }
   .edu-card { grid-template-columns: 1fr; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-name-full { grid-column: 1; }
+  .hero-stats { flex-direction: row; flex-wrap: wrap; }
+  .hero-stats .stat-card { flex: 1 1 140px; }
 }
 
 /* Mobile nav */

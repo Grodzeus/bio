@@ -77,20 +77,57 @@ const savedLang = localStorage.getItem('lang') || 'en';
 setLang(savedLang);
 
 /* ── Identity obfuscation ───────────────────────────────
-   All PII decoded only after page load + delay.
-   Static source contains zero plaintext names or URLs.
+   Three layers:
+   1. XOR rotation — 9-byte cycling key; raw base64 is meaningless without it.
+   2. Fragment splitting — each secret split into 3 parts, scattered below.
+   3. Interaction-triggered URLs — Calendly & LinkedIn only decoded on
+      mouseover/touchstart; headless crawlers without interaction never see them.
    ───────────────────────────────────────────────────── */
+
+// XOR key — 9 bytes, cycles over each character of the decoded base64
+const _k = [42, 79, 28, 115, 178, 53, 105, 88, 31];
+
+function _xd(parts) {
+  const raw = atob(parts.join(''));
+  return raw.split('').map(function (c, i) {
+    return String.fromCharCode(c.charCodeAt(0) ^ _k[i % _k.length]);
+  }).join('');
+}
+
+// — first-name fragments (fn = "Ghassane")
+const _f0 = 'bSd9'; const _f2 = 'Bz0=';
+// — last-name fragments (ln = "Binahla")
+const _f3 = 'aCZy'; const _f5 = 'CA==';
+// — nav brand fragments (navN = "G. Binahla")
+const _f6 = 'bWE8Md'; const _f8 = 'Sw==';
+// — display email fragments
+const _f9 = 'TS11HdNdBTk'; const _fB = 'FzBCxzHg==';
+// — mailto fragments
+const _fC = 'TS11HdNdBTkx'; const _fE = 'Ry51H5xWBjU=';
+
+// Middle fragments interleaved to break sequential regex scans
+const _f1 = 'AMFU'; const _f4 = 'EtpZ'; const _f7 = 'tbCDBz';
+const _fA = 'xWj1zM9VYCD'; const _fD = 'Wj1zWNBcBhh4';
+
+// — calendly URL fragments (interaction-only, see below)
+const _fF = 'QjtoA8EPRnd8SyN5HdZZEHZ8';
+const _fG = 'RSIzFNpUGit+RCoxEdtbCDBz';
+const _fH = 'S2BvENpQDS1zT2JxFtdBADZ4';
+
+// — linkedin URL fragments (interaction-only, see below)
+const _fI = 'QjtoA8EPRndzQyF3FtZ';
+const _fJ = 'cB3Z8RSIzGtwaDjB+WT';
+const _fK = 'x9HdcYCzFxSydwEg==';
+
+/* ── Static PII: injected 2.5 s after load ── */
 window.addEventListener('load', function () {
   setTimeout(function () {
 
-    /* ── Decode ── */
-    const fn       = atob('R2hhc3NhbmU=');
-    const ln       = atob('QmluYWhsYQ==');
-    const navN     = atob('Ry4gQmluYWhsYQ==');
-    const calendly = atob('aHR0cHM6Ly9jYWxlbmRseS5jb20vZ2hhc3NhbmUtYmluYWhsYS9zY2hlZHVsZS1tZWV0aW5n');
-    const linkedin = atob('aHR0cHM6Ly9saW5rZWRpbi5jb20vaW4vZ2hhc3NhbmUtYmluYWhsYQ==');
-    const display  = atob('Z2JpbmFobGEucHJvQGdtYWlsLmNvbQ==');
-    const mailto   = atob('Z2JpbmFobGEucHJvK2Jpb0BnbWFpbC5jb20=');
+    const fn      = _xd([_f0, _f1, _f2]);
+    const ln      = _xd([_f3, _f4, _f5]);
+    const navN    = _xd([_f6, _f7, _f8]);
+    const display = _xd([_f9, _fA, _fB]);
+    const mailto  = _xd([_fC, _fD, _fE]);
 
     /* ── <title> ── */
     document.title = fn + ' ' + ln + ' — AI-Powered Software Engineer';
@@ -102,18 +139,6 @@ window.addEventListener('load', function () {
     /* ── Hero h1 ── */
     const heroName = document.getElementById('heroName');
     if (heroName) heroName.innerHTML = fn + '<br /><em>' + ln + '</em>';
-
-    /* ── Calendly links ── */
-    ['calLink1', 'calLink2'].forEach(function (id) {
-      const el = document.getElementById(id);
-      if (el) el.href = calendly;
-    });
-
-    /* ── LinkedIn links ── */
-    ['liLink1', 'liLink2'].forEach(function (id) {
-      const el = document.getElementById(id);
-      if (el) el.href = linkedin;
-    });
 
     /* ── Email badge ── */
     const badge = document.getElementById('emailBadge');
@@ -134,3 +159,49 @@ window.addEventListener('load', function () {
 
   }, 2500); // 2.5 s post-load — crawlers never reach this
 });
+
+/* ── Interaction-triggered URL decode ───────────────────
+   Calendly and LinkedIn hrefs are only set on first mouseover
+   or touchstart — a headless browser with no interaction never
+   sees the real URL, even after the page fully loads.
+   ───────────────────────────────────────────────────── */
+(function () {
+  var _calDone = false;
+  var _liDone  = false;
+
+  function _revealCal() {
+    if (_calDone) return;
+    _calDone = true;
+    var url = _xd([_fF, _fG, _fH]);
+    ['calLink1', 'calLink2'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.href = url;
+    });
+  }
+
+  function _revealLi() {
+    if (_liDone) return;
+    _liDone = true;
+    var url = _xd([_fI, _fJ, _fK]);
+    ['liLink1', 'liLink2'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.href = url;
+    });
+  }
+
+  ['calLink1', 'calLink2'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('mouseover',  _revealCal);
+      el.addEventListener('touchstart', _revealCal);
+    }
+  });
+
+  ['liLink1', 'liLink2'].forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('mouseover',  _revealLi);
+      el.addEventListener('touchstart', _revealLi);
+    }
+  });
+}());

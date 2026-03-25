@@ -6,6 +6,8 @@
   <title>▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ — AI-Powered Software Engineer</title>
   <meta name="description" content="Software & Backend Engineer specialising in AI systems, LLM orchestration, agentic AI, and cybersecurity." />
   <meta name="keywords" content="AI Engineer, Backend Engineer, LLM, Agentic AI, RAG, Python, Django, FastAPI, LLMOps, Generative AI, Prompt Engineering, Software Engineer" />
+  <!-- Prevent SEO tools from caching/indexing snippets that could expose PII -->
+  <meta name="robots" content="nosnippet, noodp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
@@ -618,6 +620,17 @@
     </div>
   </div>
 </section>
+
+<!-- HONEYPOT — invisible to humans, visible to scrapers
+     Any email sent to the trap address reveals an active harvester.
+     aria-hidden + display:none + tabindex=-1 ensure no real user interaction. -->
+<div aria-hidden="true" style="display:none;position:absolute;left:-9999px;" tabindex="-1">
+  <form>
+    <label for="__hp_contact">Contact</label>
+    <input id="__hp_contact" type="email" name="email" autocomplete="off"
+           value="scraper-trap@gbinahla.pro" tabindex="-1" />
+  </form>
+</div>
 
 <footer>
   <div class="wrap" id="footerContact">

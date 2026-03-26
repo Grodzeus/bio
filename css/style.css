@@ -369,3 +369,88 @@ span[data-lang].vis { display: inline; }
 li[data-lang].vis   { display: list-item; }
 div[data-lang].vis  { display: block; }
 a[data-lang].vis    { display: inline-flex; }
+
+/* ═══════════════════════════════════════ COOKIE CONSENT */
+.cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  z-index: 9999;
+  width: min(600px, calc(100vw - 32px));
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+  padding: 20px 24px;
+  opacity: 0;
+  transition: transform .35s cubic-bezier(.22,.68,0,1.2), opacity .3s ease;
+  pointer-events: none;
+}
+.cookie-banner--visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+.cookie-banner--hidden {
+  transform: translateX(-50%) translateY(120%);
+  opacity: 0;
+  pointer-events: none;
+}
+.cookie-inner {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+.cookie-text {
+  flex: 1;
+  min-width: 0;
+}
+.cookie-text strong {
+  font-family: var(--ff-head);
+  font-size: .9rem;
+  color: var(--text);
+  display: block;
+  margin-bottom: 6px;
+}
+.cookie-text p {
+  font-size: .8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0;
+}
+.cookie-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.cookie-btn {
+  font-family: var(--ff-head);
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .03em;
+  border: none;
+  border-radius: calc(var(--radius) / 2);
+  padding: 8px 16px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: opacity .15s, transform .1s;
+}
+.cookie-btn:hover  { opacity: .85; transform: translateY(-1px); }
+.cookie-btn:active { transform: translateY(0); }
+.cookie-btn--accept {
+  background: var(--accent);
+  color: var(--btn-primary-text);
+}
+.cookie-btn--decline {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+}
+.cookie-btn--decline:hover { color: var(--text); border-color: var(--text); }
+
+@media (max-width: 500px) {
+  .cookie-inner { flex-direction: column; }
+  .cookie-actions { flex-direction: row; }
+}

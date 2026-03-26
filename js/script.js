@@ -226,3 +226,51 @@ window.addEventListener('load', function () {
   // Init: show first tab's cards
   activate(tabs[0]);
 }());
+
+/* ── Cookie Consent / GDPR ───────────────────────────── */
+const _GA_ID = 'G-86DS12HPKE';
+
+function _loadGA() {
+  if (document.getElementById('_ga_script')) return;
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { dataLayer.push(arguments); };
+  gtag('js', new Date());
+  gtag('config', _GA_ID);
+  const s = document.createElement('script');
+  s.id    = '_ga_script';
+  s.async = true;
+  s.src   = 'https://www.googletagmanager.com/gtag/js?id=' + _GA_ID;
+  document.head.appendChild(s);
+}
+
+function _hideBanner() {
+  const b = document.getElementById('cookieBanner');
+  if (!b) return;
+  b.classList.remove('cookie-banner--visible');
+  b.classList.add('cookie-banner--hidden');
+  setTimeout(() => b.remove(), 400);
+}
+
+(function _initConsent() {
+  const stored = localStorage.getItem('cookie_consent');
+  if (stored === 'accepted') { _loadGA(); return; }
+  if (stored === 'declined') return;
+
+  const banner = document.getElementById('cookieBanner');
+  if (!banner) return;
+
+  // Animate in
+  requestAnimationFrame(() =>
+    requestAnimationFrame(() => banner.classList.add('cookie-banner--visible'))
+  );
+
+  document.getElementById('cookieAccept').addEventListener('click', () => {
+    localStorage.setItem('cookie_consent', 'accepted');
+    _loadGA();
+    _hideBanner();
+  });
+  document.getElementById('cookieDecline').addEventListener('click', () => {
+    localStorage.setItem('cookie_consent', 'declined');
+    _hideBanner();
+  });
+}());

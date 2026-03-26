@@ -13,14 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <!-- Google Analytics 4 -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-86DS12HPKE"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-86DS12HPKE');
-  </script>
+  <!-- Google Analytics 4 — loaded only after cookie consent (GDPR) -->
 </head>
 <body>
 
@@ -1040,6 +1033,32 @@
     ▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓ · Paris, France
   </div>
 </footer>
+
+<!-- COOKIE CONSENT BANNER ──────────────────────────── -->
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-labelledby="cookieTitle" aria-modal="false" aria-live="polite">
+  <div class="cookie-inner">
+    <div class="cookie-text">
+      <strong id="cookieTitle">
+        <span data-lang="en" class="vis">Cookies &amp; Privacy</span>
+        <span data-lang="fr">Cookies &amp; Confidentialité</span>
+      </strong>
+      <p>
+        <span data-lang="en" class="vis">This site uses Google Analytics to understand how visitors interact with the content. No personal data is sold or shared with third parties.</span>
+        <span data-lang="fr">Ce site utilise Google Analytics pour comprendre comment les visiteurs interagissent avec le contenu. Aucune donnée personnelle n'est vendue ou partagée avec des tiers.</span>
+      </p>
+    </div>
+    <div class="cookie-actions">
+      <button id="cookieAccept" class="cookie-btn cookie-btn--accept">
+        <span data-lang="en" class="vis">Accept analytics</span>
+        <span data-lang="fr">Accepter</span>
+      </button>
+      <button id="cookieDecline" class="cookie-btn cookie-btn--decline">
+        <span data-lang="en" class="vis">Decline</span>
+        <span data-lang="fr">Refuser</span>
+      </button>
+    </div>
+  </div>
+</div>
 
 <script src="js/script.js"></script>
 </body>

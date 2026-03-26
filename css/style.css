@@ -259,6 +259,7 @@ section { padding: 96px 0; border-top: 1px solid var(--border); }
 .skill-icon-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 18px 8px 12px; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: border-color .2s, transform .15s, box-shadow .15s; cursor: default; min-height: 90px; justify-content: center; }
 .skill-icon-card:hover { border-color: var(--accent); transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,.12); }
 .skill-icon-card i { font-size: 2rem; line-height: 1; }
+.skill-icon-card .skill-svg-icon { width: 2rem; height: 2rem; object-fit: contain; }
 .skill-icon-card .skill-abbr { font-family: var(--ff-mono); font-size: .8rem; font-weight: 700; color: var(--accent); line-height: 1; }
 .skill-icon-card span:not(.skill-abbr) { font-family: var(--ff-mono); font-size: .56rem; color: var(--muted); text-align: center; line-height: 1.35; }
 .skill-icon-card[hidden] { display: none; }

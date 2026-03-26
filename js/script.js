@@ -205,3 +205,24 @@ window.addEventListener('load', function () {
     }
   });
 }());
+
+/* ── Skills tab filter ──────────────────────────────── */
+(function () {
+  const tabs  = document.querySelectorAll('.skill-tab');
+  const cards = document.querySelectorAll('.skill-icon-card');
+  if (!tabs.length) return;
+
+  function activate(tab) {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const active = tab.dataset.tab;
+    cards.forEach(card => {
+      card.hidden = card.dataset.tab !== active;
+    });
+  }
+
+  tabs.forEach(tab => tab.addEventListener('click', () => activate(tab)));
+
+  // Init: show first tab's cards
+  activate(tabs[0]);
+}());

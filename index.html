@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 <body>
 
@@ -277,142 +278,319 @@
 <!-- SKILLS ───────────────────────────────────────────── -->
 <section id="skills">
   <div class="wrap">
-    <div class="sec-label">
-      <span data-lang="en" class="vis">03 — Skills</span>
-      <span data-lang="fr">03 — Compétences</span>
-    </div>
-    <div class="skills-grid">
+    <div class="skills-layout">
 
-      <div class="skill-group">
-        <div class="skill-group-title" data-lang="en" class="vis">Languages &amp; Frameworks</div>
-        <div class="skill-group-title" data-lang="fr">Langages &amp; Frameworks</div>
-        <div class="tags">
-          <span class="tag ac">Python</span>
-          <span class="tag ac">Django</span>
-          <span class="tag ac">FastAPI</span>
-          <span class="tag ac">Flask</span>
-          <span class="tag">Java</span>
-          <span class="tag">JEE</span>
-          <span class="tag">Spring</span>
-          <span class="tag">Node.js</span>
-          <span class="tag">React</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">C</span>
-          <span class="tag">C++</span>
-          <span class="tag">SQL</span>
-          <span class="tag">REST API</span>
+      <!-- LEFT PANEL -->
+      <div class="skills-info">
+        <div class="sec-label">
+          <span data-lang="en" class="vis">03 — Skills</span>
+          <span data-lang="fr">03 — Compétences</span>
+        </div>
+        <h2 class="skills-heading">
+          <span data-lang="en" class="vis">What My Skills<br>Include?</span>
+          <span data-lang="fr">Quelles sont<br>mes compétences&nbsp;?</span>
+        </h2>
+        <p class="skills-desc">
+          <span data-lang="en" class="vis">From systems engineering to AI agents — a broad stack built through 10+ years of hands-on development.</span>
+          <span data-lang="fr">Des systèmes à l'IA agentique — une stack large construite sur plus de 10 ans de développement terrain.</span>
+        </p>
+        <div class="skills-tabs" role="tablist">
+          <button class="skill-tab active" data-tab="languages" role="tab">
+            <span data-lang="en" class="vis">Languages</span><span data-lang="fr">Langages</span>
+          </button>
+          <button class="skill-tab" data-tab="ai" role="tab">AI &amp; Data</button>
+          <button class="skill-tab" data-tab="devops" role="tab">DevOps</button>
+          <button class="skill-tab" data-tab="security" role="tab">
+            <span data-lang="en" class="vis">Security</span><span data-lang="fr">Sécurité</span>
+          </button>
         </div>
       </div>
 
-      <div class="skill-group">
-        <div class="skill-group-title" data-lang="en" class="vis">AI / ML &amp; LLMOps</div>
-        <div class="skill-group-title" data-lang="fr">IA / ML &amp; LLMOps</div>
-        <div class="tags">
-          <span class="tag ac">Agentic AI</span>
-          <span class="tag ac">LangChain</span>
-          <span class="tag ac">PydanticAI</span>
-          <span class="tag ac">RAG</span>
-          <span class="tag ac">Prompt Engineering</span>
-          <span class="tag go">Generative AI</span>
-          <span class="tag go">LLMOps</span>
-          <span class="tag go">LLM Evaluation</span>
-          <span class="tag go">Function Calling</span>
-          <span class="tag go">Guardrails</span>
-          <span class="tag go">Token Optimisation</span>
-          <span class="tag">MCP</span>
-          <span class="tag">PyTorch</span>
-          <span class="tag">HuggingFace</span>
-          <span class="tag">scikit-learn</span>
-          <span class="tag">XGBoost</span>
-          <span class="tag">NLP</span>
-          <span class="tag">ML / DL</span>
-          <span class="tag">RLHF</span>
-          <span class="tag">Fine-tuning · LoRA</span>
-          <span class="tag">Data Collection &amp; Aggregation</span>
-          <span class="tag">Multimodal Pipelines</span>
-          <span class="tag">Audio &amp; Image Processing</span>
-          <span class="tag">ComfyUI</span>
-          <span class="tag">Pinecone</span>
-          <span class="tag">Multimodal AI</span>
-          <span class="tag vi">Cursor</span>
-          <span class="tag vi">Claude Code</span>
-        </div>
-      </div>
+      <!-- RIGHT PANEL: icon grid -->
+      <div class="skills-icons" id="skillsGrid">
 
-      <div class="skill-group">
-        <div class="skill-group-title" data-lang="en" class="vis">Infrastructure &amp; Backend</div>
-        <div class="skill-group-title" data-lang="fr">Infrastructure &amp; Backend</div>
-        <div class="tags">
-          <span class="tag">Docker</span>
-          <span class="tag">GCP</span>
-          <span class="tag">Kubernetes</span>
-          <span class="tag">Redis</span>
-          <span class="tag">Event-driven Architecture</span>
-          <span class="tag">Streaming</span>
-          <span class="tag">GitLab CI/CD</span>
-          <span class="tag">Jenkins</span>
-          <span class="tag">Helm</span>
-          <span class="tag">Swagger / OpenAPI</span>
-          <span class="tag">IaC</span>
-          <span class="tag">PostgreSQL</span>
-          <span class="tag">MySQL</span>
-          <span class="tag">MariaDB</span>
-          <span class="tag">MongoDB</span>
-          <span class="tag">SQLAlchemy</span>
-          <span class="tag">Prometheus</span>
-          <span class="tag">Grafana</span>
-          <span class="tag">ElasticSearch</span>
-          <span class="tag">Ansible</span>
-          <span class="tag">S3</span>
-          <span class="tag">Observability</span>
+        <!-- ── LANGUAGES ── -->
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-python-plain colored"></i>
+          <span>Python</span>
         </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="skill-group-title" data-lang="en" class="vis">Security</div>
-        <div class="skill-group-title" data-lang="fr">Sécurité</div>
-        <div class="tags">
-          <span class="tag">Penetration Testing</span>
-          <span class="tag">SOC</span>
-          <span class="tag">SIEM</span>
-          <span class="tag">HIDS / NIDS</span>
-          <span class="tag">Firewalls</span>
-          <span class="tag">Vulnerability Assessment</span>
-          <span class="tag">DevSecOps</span>
-          <span class="tag">Secure-by-Design</span>
-          <span class="tag">Threat Intelligence</span>
-          <span class="tag">Forensics</span>
-          <span class="tag">Risk Analysis</span>
-          <span class="tag">AI Security</span>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-java-plain colored"></i>
+          <span>Java</span>
         </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="skill-group-title" data-lang="en" class="vis">Methods</div>
-        <div class="skill-group-title" data-lang="fr">Méthodes</div>
-        <div class="tags">
-          <span class="tag">Agile / Scrum</span>
-          <span class="tag">SDLC</span>
-          <span class="tag">Unit Testing</span>
-          <span class="tag">Integration Testing</span>
-          <span class="tag">Functional Testing</span>
-          <span class="tag">Observability &amp; Structured Logging</span>
+        <div class="skill-icon-card" data-tab="languages">
+          <span class="skill-abbr">JEE</span>
+          <span>JEE</span>
         </div>
-      </div>
-
-      <div class="skill-group">
-        <div class="skill-group-title" data-lang="en" class="vis">Automation</div>
-        <div class="skill-group-title" data-lang="fr">Automatisation</div>
-        <div class="tags">
-          <span class="tag">Selenium</span>
-          <span class="tag">Puppeteer</span>
-          <span class="tag">Ansible Tower</span>
-          <span class="tag">Scripting</span>
-          <span class="tag">Remote Configuration</span>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-c-plain colored"></i>
+          <span>C</span>
         </div>
-      </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-cplusplus-plain colored"></i>
+          <span>C++</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-nodejs-plain colored"></i>
+          <span>Node.js</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-react-original colored"></i>
+          <span>React</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-typescript-plain colored"></i>
+          <span>TypeScript</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-django-plain colored"></i>
+          <span>Django</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-flask-original colored"></i>
+          <span>Flask</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <i class="devicon-fastapi-plain colored"></i>
+          <span>FastAPI</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <span class="skill-abbr">SQL</span>
+          <span>SQL</span>
+        </div>
+        <div class="skill-icon-card" data-tab="languages">
+          <span class="skill-abbr">REST</span>
+          <span>REST API</span>
+        </div>
 
-    </div>
+        <!-- ── AI & DATA ── -->
+        <div class="skill-icon-card" data-tab="ai">
+          <i class="devicon-pytorch-plain colored"></i>
+          <span>PyTorch</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">HF</span>
+          <span>HuggingFace</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">SKL</span>
+          <span>scikit-learn</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">XGB</span>
+          <span>XGBoost</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">LC</span>
+          <span>LangChain</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">PAI</span>
+          <span>PydanticAI</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">RAG</span>
+          <span>RAG</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">PE</span>
+          <span>Prompt Eng.</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">AGT</span>
+          <span>Agentic AI</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">LLM</span>
+          <span>LLMOps</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">NLP</span>
+          <span>NLP</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">ML</span>
+          <span>ML / DL</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">RLHF</span>
+          <span>RLHF</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">LoRA</span>
+          <span>Fine-tuning</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">MCP</span>
+          <span>MCP</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">MM</span>
+          <span>Multimodal AI</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">PIN</span>
+          <span>Pinecone</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">CUI</span>
+          <span>ComfyUI</span>
+        </div>
+        <div class="skill-icon-card" data-tab="ai">
+          <span class="skill-abbr">DATA</span>
+          <span>Data Processing</span>
+        </div>
+
+        <!-- ── DEVOPS ── -->
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-docker-plain colored"></i>
+          <span>Docker</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-kubernetes-plain colored"></i>
+          <span>Kubernetes</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-googlecloud-plain colored"></i>
+          <span>GCP</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-redis-plain colored"></i>
+          <span>Redis</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-postgresql-plain colored"></i>
+          <span>PostgreSQL</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-mysql-plain colored"></i>
+          <span>MySQL</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-mongodb-plain colored"></i>
+          <span>MongoDB</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-mariadb-plain colored"></i>
+          <span>MariaDB</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-gitlab-plain colored"></i>
+          <span>GitLab CI/CD</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-jenkins-plain colored"></i>
+          <span>Jenkins</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-ansible-plain colored"></i>
+          <span>Ansible</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-helm-plain colored"></i>
+          <span>Helm</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-prometheus-plain colored"></i>
+          <span>Prometheus</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-grafana-plain colored"></i>
+          <span>Grafana</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-elasticsearch-plain colored"></i>
+          <span>ElasticSearch</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-amazonwebservices-plain colored"></i>
+          <span>S3 / AWS</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <i class="devicon-swagger-plain colored"></i>
+          <span>Swagger</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <span class="skill-abbr">ORM</span>
+          <span>SQLAlchemy</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <span class="skill-abbr">IaC</span>
+          <span>IaC</span>
+        </div>
+        <div class="skill-icon-card" data-tab="devops">
+          <span class="skill-abbr">OBS</span>
+          <span>Observability</span>
+        </div>
+
+        <!-- ── SECURITY ── -->
+        <div class="skill-icon-card" data-tab="security">
+          <i class="devicon-selenium-plain colored"></i>
+          <span>Selenium</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <i class="devicon-puppeteer-plain colored"></i>
+          <span>Puppeteer</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">PEN</span>
+          <span>Pentesting</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">SOC</span>
+          <span>SOC / SIEM</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">IDS</span>
+          <span>HIDS / NIDS</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">FW</span>
+          <span>Firewalls</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">CVE</span>
+          <span>Vuln. Assessment</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">DSO</span>
+          <span>DevSecOps</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">TI</span>
+          <span>Threat Intel</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">FOR</span>
+          <span>Forensics</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">AIS</span>
+          <span>AI Security</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">SCR</span>
+          <span>Scripting</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">AT</span>
+          <span>Ansible Tower</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">AGI</span>
+          <span>Agile / Scrum</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">SDLC</span>
+          <span>SDLC</span>
+        </div>
+        <div class="skill-icon-card" data-tab="security">
+          <span class="skill-abbr">TEST</span>
+          <span>Unit Testing</span>
+        </div>
+
+      </div><!-- /skills-icons -->
+    </div><!-- /skills-layout -->
   </div>
 </section>
 

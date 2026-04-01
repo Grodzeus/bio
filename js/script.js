@@ -68,9 +68,15 @@ document.addEventListener('click', e => {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDrawer(); });
 
 /* ── Init ────────────────────────────────────────────── */
-// Theme: default light, respect saved preference
-const savedTheme = localStorage.getItem('theme') || 'light';
+// Theme: respect saved preference, otherwise follow OS preference
+const _mq = window.matchMedia('(prefers-color-scheme: dark)');
+const savedTheme = localStorage.getItem('theme') || (_mq.matches ? 'dark' : 'light');
 applyTheme(savedTheme);
+
+// Auto-follow OS changes when the user hasn't manually overridden
+_mq.addEventListener('change', e => {
+  if (!localStorage.getItem('theme')) applyTheme(e.matches ? 'dark' : 'light');
+});
 
 // Language: respect saved preference; otherwise detect from browser/OS
 const _saved = localStorage.getItem('lang');

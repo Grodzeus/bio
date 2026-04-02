@@ -3,6 +3,8 @@ const ICONS = { light: '🌙', dark: '☀️' };
 
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : '');
+  const favicon = document.getElementById('favicon');
+  if (favicon) favicon.href = theme === 'dark' ? 'favicon-dark.png' : 'favicon.png';
   const icon = ICONS[theme] ?? '🌙';
   const btn  = document.getElementById('themeBtn');
   const btnD = document.getElementById('themeBtnD');
